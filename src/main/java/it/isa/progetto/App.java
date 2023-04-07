@@ -70,6 +70,95 @@ public class App
         }
     }
 
+    public static void create_impiegato(Connection conn, int idImpiegato,int Afferenza, String Nome, String Cognome,LocalDate DataAssunzione ,int Stipendio){
+        try{
+            String sql = "INSERT INTO Impiegato (IdImpiegato, Afferenza, Nome, Cognome, DataAssunzione, Stipendio) VALUES (?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setInt(1, idImpiegato);
+                stmt.setInt(2, Afferenza);
+                stmt.setString(3, Nome);
+                stmt.setString(4, Cognome);
+                stmt.setDate(5, java.sql.Date.valueOf(DataAssunzione));
+                stmt.setInt(6, Stipendio);
+                int result = stmt.executeUpdate();
+                System.out.println("Result: " + result);
+            }
+        }catch(SQLException ex){
+            System.out.print("Errore nella funzione: " + ex);
+        }
+    }
+    
+    public static void delete_impiegato(Connection conn, int idImpiegato) {
+    try {
+        String sql = "DELETE FROM Impiegato WHERE IdImpiegato = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idImpiegato);
+            int result = stmt.executeUpdate();
+            System.out.println("Result: " + result);
+        }
+    } catch (SQLException ex) {
+        System.out.print("Errore nella funzione: " + ex);
+    }
+}
+
+    
+    public static void pDip1(PreparedStatement pstmt){
+        try{
+            String query = "SELECT d.NomeDipartimento, COUNT(p.IdProgetto) AS NumeroProgetti " +
+                        "FROM Dipartimento d " +
+                        "LEFT JOIN Progetto p ON d.NomeDipartimento = p.Afferenza " +
+                        "GROUP BY d.NomeDipartimento;";
+            ResultSet rs = pstmt.executeQuery(query);
+
+                // Stampa dei risultati
+                while (rs.next()) {
+                    String nomeDipartimento = rs.getString("NomeDipartimento");
+                    int numeroProgetti = rs.getInt("NumeroProgetti");
+                    System.out.println("Dipartimento: " + nomeDipartimento + ", Numero Progetti: " + numeroProgetti);
+                }
+        }catch (SQLException ex) {
+            System.out.print("Errore nella funzione: " + ex);
+        }
+    }
+    
+    public static void pPro1(PreparedStatement pstmt){
+    try{
+        String query = "SELECT e.IdProdotto, e.Versione, e.Guadagno * e.Vendite AS GuadagnoTotale " +
+                    "FROM Evoluzione e;";
+        ResultSet rs = pstmt.executeQuery(query);
+
+        // Stampa dei risultati
+        while (rs.next()) {
+            int idProdotto = rs.getInt("IdProdotto");
+            String versione = rs.getString("Versione");
+            double guadagnoTotale = rs.getDouble("GuadagnoTotale");
+            System.out.println("Id Prodotto: " + idProdotto + ", Versione: " + versione + ", Guadagno Totale: " + guadagnoTotale);
+        }
+    }catch (SQLException ex) {
+        System.out.print("Errore nella funzione: " + ex);
+    }
+    
+}
+
+    
+    public static void pPro2(PreparedStatement pstmt){
+        try{
+            String query = "SELECT e.IdProdotto, e.Versione, e.Vendite - LAG(e.Vendite) OVER (PARTITION BY e.IdProdotto ORDER BY e.Versione) AS VariazioneVendite " +
+                        "FROM Evoluzione e " +
+                        "ORDER BY e.IdProdotto, e.Versione;";
+            ResultSet rs = pstmt.executeQuery(query);
+
+            // Stampa dei risultati
+            while (rs.next()) {
+                int idProdotto = rs.getInt("IdProdotto");
+                String versione = rs.getString("Versione");
+                double variazioneVendite = rs.getDouble("VariazioneVendite");
+                System.out.println("Id Prodotto: " + idProdotto + ", Versione: " + versione + ", Variazione Vendite: " + variazioneVendite);
+            }
+        }catch (SQLException ex) {
+            System.out.print("Errore nella funzione: " + ex);
+        }
+    }
     
     public static String pDip3(PreparedStatement pstmt){
         try {
