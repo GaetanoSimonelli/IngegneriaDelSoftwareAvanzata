@@ -117,7 +117,7 @@ public class App
                     System.out.println("Dipartimento: " + nomeDipartimento + ", Numero Progetti: " + numeroProgetti);
                 }
         }catch (SQLException ex) {
-            System.out.print("Errore nella funzione: " + ex);
+            System.out.print("Errore nella funzione:: " + ex);
         }
     }
     
