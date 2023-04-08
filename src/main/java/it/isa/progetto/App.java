@@ -44,6 +44,9 @@ public class App
             pstmt = conn.prepareStatement("SELECT Afferenza, SoddisfazioneAziendale, SupportoColleghi,ComunicazioneInterna FROM Impiegato RIGHT JOIN Questionario ON Impiegato.IdImpiegato = Questionario.Appartenenza ORDER BY Impiegato.Afferenza");
             String s = pDip3(pstmt);
             System.out.print(s);
+            //pImp2(pstmt);
+            pDip1(conn);
+            //pPro2(pstmt);
             
         } catch (SQLException e) {
             System.out.println("DB2 Database connection Failed");
@@ -102,13 +105,16 @@ public class App
 }
 
     
-    public static void pDip1(PreparedStatement pstmt){
+    public static void pDip1(Connection conn){
         try{
             String query = "SELECT d.NomeDipartimento, COUNT(p.IdProgetto) AS NumeroProgetti " +
                         "FROM Dipartimento d " +
                         "LEFT JOIN Progetto p ON d.NomeDipartimento = p.Afferenza " +
                         "GROUP BY d.NomeDipartimento;";
-            ResultSet rs = pstmt.executeQuery(query);
+            
+            PreparedStatement pstmt = conn.prepareStatement(query);
+                     
+            ResultSet rs = pstmt.executeQuery();
 
                 // Stampa dei risultati
                 while (rs.next()) {
@@ -121,6 +127,35 @@ public class App
         }
     }
     
+    public static void pImp2(PreparedStatement pstmt) {
+        try {
+            String query = "SELECT D.NomeDipartimento AS Dipartimento, " +
+                    "AVG(Q.SoddisfazioneAziendale) AS MediaSoddisfazioneAziendale, " +
+                    "AVG(Q.SupportoColleghi) AS MediaSupportoColleghi, " +
+                    "AVG(Q.ComunicazioneInterna) AS MediaComunicazioneInterna " +
+                    "FROM Dipartimento D " +
+                    "LEFT JOIN Impiegato I ON D.NomeDipartimento = I.Afferenza " +
+                    "LEFT JOIN Questionario Q ON I.IdImpiegato = Q.Appartenenza " +
+                    "GROUP BY D.NomeDipartimento;";
+            ResultSet rs = pstmt.executeQuery(query);
+    
+            // Stampa dei risultati
+            while (rs.next()) {
+                String dipartimento = rs.getString("Dipartimento");
+                double mediaSoddisfazioneAziendale = rs.getDouble("MediaSoddisfazioneAziendale");
+                double mediaSupportoColleghi = rs.getDouble("MediaSupportoColleghi");
+                double mediaComunicazioneInterna = rs.getDouble("MediaComunicazioneInterna");
+                System.out.println("Dipartimento: " + dipartimento +
+                        ", Media Soddisfazione Aziendale: " + mediaSoddisfazioneAziendale +
+                        ", Media Supporto Colleghi: " + mediaSupportoColleghi +
+                        ", Media Comunicazione Interna: " + mediaComunicazioneInterna);
+            }
+        } catch (SQLException ex) {
+            System.out.print("Errore nella funzione: " + ex);
+        }
+    }
+    
+
     public static void pPro1(PreparedStatement pstmt){
     try{
         String query = "SELECT e.IdProdotto, e.Versione, e.Guadagno * e.Vendite AS GuadagnoTotale " +
