@@ -44,9 +44,9 @@ public class App
             pstmt = conn.prepareStatement("SELECT Afferenza, SoddisfazioneAziendale, SupportoColleghi,ComunicazioneInterna FROM Impiegato RIGHT JOIN Questionario ON Impiegato.IdImpiegato = Questionario.Appartenenza ORDER BY Impiegato.Afferenza");
             String s = pDip3(pstmt);
             System.out.print(s);
-            //pImp2(pstmt);
+            pImp2(pstmt);
             pDip1(conn);
-            //pPro2(pstmt);
+            pPro2(conn);
             
         } catch (SQLException e) {
             System.out.println("DB2 Database connection Failed");
@@ -156,11 +156,13 @@ public class App
     }
     
 
-    public static void pPro1(PreparedStatement pstmt){
+    public static void pPro1(Connection conn){
     try{
         String query = "SELECT e.IdProdotto, e.Versione, e.Guadagno * e.Vendite AS GuadagnoTotale " +
                     "FROM Evoluzione e;";
-        ResultSet rs = pstmt.executeQuery(query);
+        
+        PreparedStatement pstmt = conn.prepareStatement(query);
+        ResultSet rs = pstmt.executeQuery();
 
         // Stampa dei risultati
         while (rs.next()) {
@@ -176,12 +178,13 @@ public class App
 }
 
     
-    public static void pPro2(PreparedStatement pstmt){
+    public static void pPro2(Connection conn){
         try{
             String query = "SELECT e.IdProdotto, e.Versione, e.Vendite - LAG(e.Vendite) OVER (PARTITION BY e.IdProdotto ORDER BY e.Versione) AS VariazioneVendite " +
                         "FROM Evoluzione e " +
                         "ORDER BY e.IdProdotto, e.Versione;";
-            ResultSet rs = pstmt.executeQuery(query);
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
 
             // Stampa dei risultati
             while (rs.next()) {
