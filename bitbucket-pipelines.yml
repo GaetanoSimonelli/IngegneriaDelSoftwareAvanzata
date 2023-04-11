@@ -18,7 +18,7 @@ pipelines:
           #CI: Build a test
             - mvn -B verify --file pom.xml
           #CD: deploy su dockerhub
-            - docker image build --tag gaetanos98/ingdelsoftwareavanzata:0.1
+            - docker image build --tag gaetanos98/ingdelsoftwareavanzata:0.1 .
             - docker login --username $dockerhub_username  --password $dockerhub_password
             - docker push gaetanos98/ingdelsoftwareavanzata
           after-script:
