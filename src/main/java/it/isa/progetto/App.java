@@ -155,7 +155,26 @@ public class App
         }
     }
     
+    public static void pPro3(Connection conn) {
+        try {
+            String query = "SELECT Fase, AVG(DAYS(CURRENT_DATE) - DAYS(DataInizio)) AS TempoMedio " +
+                           "FROM FaseProgetto " +
+                           "GROUP BY Fase;";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
 
+            // Stampa dei risultati
+            while (rs.next()) {
+                String fase = rs.getString("Fase");
+                int tempoMedio = rs.getInt("TempoMedio");
+                System.out.println("Fase: " + fase + ", Tempo Medio: " + tempoMedio + " giorni");
+            }
+        } catch (SQLException ex) {
+            System.out.print("Errore nella funzione: " + ex);
+        }
+    }
+
+    
     public static void pPro1(Connection conn){
     try{
         String query = "SELECT e.IdProdotto, e.Versione, e.Guadagno * e.Vendite AS GuadagnoTotale " +
