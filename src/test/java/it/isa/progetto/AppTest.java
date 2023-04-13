@@ -14,6 +14,7 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
@@ -31,10 +32,12 @@ public class AppTest
      */
     public static Connection conn = null;
     
-    @Ignore 
+    
     @BeforeAll
+    @Ignore
     public static void iniziaConnessione(){
         System.out.print("inizializzo connessione per i test...");
+        System.out.print("QUESTO TEST DOVREBBE ESSERE IGNORATo");
         try {
             Class.forName("com.ibm.db2.jcc.DB2Driver");
         }
@@ -54,14 +57,15 @@ public class AppTest
             
     }
     
-    @Ignore 
+    
     @Test
+    @Ignore
     public void testPDip1(){
         App a = new App();
         a.pDip1(conn);
     }
     
-    @Ignore 
+    
     @Test
     public void shouldAnswerWithTrue()
     {
