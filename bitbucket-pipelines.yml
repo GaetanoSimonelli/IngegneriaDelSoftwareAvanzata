@@ -20,7 +20,7 @@ pipelines:
           #CD: deploy su dockerhub
             - docker image build --tag gaetanos98/ingdelsoftwareavanzata:0.1 .
             - docker login --username $dockerhub_username  --password $dockerhub_password
-            - docker push gaetanos98/ingdelsoftwareavanzata
+            - docker push gaetanos98/ingdelsoftwareavanzata:0.1
           after-script:
               # Collect checkstyle results, if any, and convert to Bitbucket Code Insights.
             - pipe: atlassian/checkstyle-report:0.3.0
