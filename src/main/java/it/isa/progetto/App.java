@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Hello world!
@@ -24,6 +25,7 @@ public class App
         //String test = myObj.nextLine();
         //System.out.println("hai scritto"+test);
         
+
         try {
             Class.forName("com.ibm.db2.jcc.DB2Driver");
         }
@@ -105,7 +107,56 @@ public class App
 }
 
     
-    public static void pDip1(Connection conn){
+  
+
+    //query di calcolo
+    public static double calcolaStipendio(LocalDate dataAssunzione) {
+        // Calcola il numero di mesi tra la data di assunzione e la data corrente
+        long mesiPassati = ChronoUnit.MONTHS.between(dataAssunzione, LocalDate.now());
+
+        // Calcola il numero di semestri completi passati
+        int semestriPassati = (int) (mesiPassati / 6);
+        double importoAggiuntivo = 75 * semestriPassati;
+        importoAggiuntivo = Math.min(importoAggiuntivo, 2200);
+        double stipendioTotale = 1200 + importoAggiuntivo;
+
+        return stipendioTotale;
+    }
+    
+    public static int calcolaCostoPersonale(int numeroDipendenti, int stipendioMedio, int tasseLavoro) {
+        if((numeroDipendenti >= 0)&(stipendioMedio >= 0)&(tasseLavoro >= 0)){
+            double costoPersonale_double = numeroDipendenti * (stipendioMedio + tasseLavoro);
+
+            if(costoPersonale_double > java.lang.Integer.MAX_VALUE)
+            {
+                System.out.print("overflow");
+                return -1;
+            }
+
+            int costoPersonale = numeroDipendenti * (stipendioMedio + tasseLavoro);
+
+            return costoPersonale;
+        } 
+        else
+        {
+            System.out.print("negative value");
+            return -1;
+        }
+    }
+
+    public static double calcolaTasse(double redditoAziendale, double aliquoteFiscali, double deduzioni, double detrazioniFiscali) {
+        double tasseDaVersare = (redditoAziendale * aliquoteFiscali) - (deduzioni + detrazioniFiscali);
+        return tasseDaVersare;
+    }
+
+    public static double calcolaBudgetAnnuale(double venditePreviste, double costiProduzione, double margineProfitto, double speseOperative) {
+        double budgetAnnuale = (venditePreviste - costiProduzione) * margineProfitto - speseOperative;
+        return budgetAnnuale;
+    }
+    
+    //query visualizzazione dati
+    
+      public static void pDip1(Connection conn){
         try{
             String query = "SELECT d.NomeDipartimento, COUNT(p.IdProgetto) AS NumeroProgetti " +
                         "FROM Dipartimento d " +
@@ -173,7 +224,6 @@ public class App
             System.out.print("Errore nella funzione: " + ex);
         }
     }
-
     
     public static void pPro1(Connection conn){
     try{

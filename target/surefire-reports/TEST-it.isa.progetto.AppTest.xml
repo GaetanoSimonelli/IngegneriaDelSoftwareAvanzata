@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="it.isa.progetto.AppTest" time="0.796" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="it.isa.progetto.AppTest" time="0.159" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="gnome"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="GB"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/gaetano/mioProgetto/target/surefire/surefirebooter12482249621391069185.jar /home/gaetano/mioProgetto/target/surefire 2023-04-13T12-51-50_287-jvmRun1 surefire3829010603005335513tmp surefire_015580915198843765621tmp"/>
+    <property name="sun.java.command" value="/home/gaetano/mioProgetto/target/surefire/surefirebooter5043584162985747289.jar /home/gaetano/mioProgetto/target/surefire 2023-04-14T18-04-37_906-jvmRun1 surefire17782855265745932570tmp surefire_017602869416163493566tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/gaetano/mioProgetto/target/test-classes:/home/gaetano/mioProgetto/target/classes:/home/gaetano/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.2/junit-jupiter-5.8.2.jar:/home/gaetano/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/home/gaetano/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/gaetano/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/home/gaetano/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.2/junit-jupiter-params-5.8.2.jar:/home/gaetano/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/home/gaetano/.m2/repository/org/jacoco/jacoco-maven-plugin/0.8.8/jacoco-maven-plugin-0.8.8.jar:/home/gaetano/.m2/repository/org/codehaus/plexus/plexus-utils/3.0.22/plexus-utils-3.0.22.jar:/home/gaetano/.m2/repository/org/apache/maven/shared/file-management/1.2.1/file-management-1.2.1.jar:/home/gaetano/.m2/repository/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar:/home/gaetano/.m2/repository/org/apache/maven/shared/maven-shared-io/1.1/maven-shared-io-1.1.jar:/home/gaetano/.m2/repository/org/apache/maven/maven-artifact/2.0.2/maven-artifact-2.0.2.jar:/home/gaetano/.m2/repository/org/apache/maven/maven-artifact-manager/2.0.2/maven-artifact-manager-2.0.2.jar:/home/gaetano/.m2/repository/org/apache/maven/maven-repository-metadata/2.0.2/maven-repository-metadata-2.0.2.jar:/home/gaetano/.m2/repository/org/apache/maven/wagon/wagon-provider-api/1.0-alpha-6/wagon-provider-api-1.0-alpha-6.jar:/home/gaetano/.m2/repository/org/codehaus/plexus/plexus-container-default/1.0-alpha-9/plexus-container-default-1.0-alpha-9.jar:/home/gaetano/.m2/repository/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.jar:/home/gaetano/.m2/repository/org/apache/maven/reporting/maven-reporting-api/3.0/maven-reporting-api-3.0.jar:/home/gaetano/.m2/repository/org/apache/maven/doxia/doxia-sink-api/1.0/doxia-sink-api-1.0.jar:/home/gaetano/.m2/repository/org/jacoco/org.jacoco.agent/0.8.8/org.jacoco.agent-0.8.8-runtime.jar:/home/gaetano/.m2/repository/org/jacoco/org.jacoco.core/0.8.8/org.jacoco.core-0.8.8.jar:/home/gaetano/.m2/repository/org/ow2/asm/asm/9.2/asm-9.2.jar:/home/gaetano/.m2/repository/org/ow2/asm/asm-commons/9.2/asm-commons-9.2.jar:/home/gaetano/.m2/repository/org/ow2/asm/asm-analysis/9.2/asm-analysis-9.2.jar:/home/gaetano/.m2/repository/org/ow2/asm/asm-tree/9.2/asm-tree-9.2.jar:/home/gaetano/.m2/repository/org/jacoco/org.jacoco.report/0.8.8/org.jacoco.report-0.8.8.jar:/home/gaetano/.m2/repository/org/mockito/mockito-all/1.10.19/mockito-all-1.10.19.jar:/home/gaetano/.m2/repository/com/pholser/junit-quickcheck-core/1.0/junit-quickcheck-core-1.0.jar:/home/gaetano/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar:/home/gaetano/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/gaetano/.m2/repository/org/javaruntype/javaruntype/1.3/javaruntype-1.3.jar:/home/gaetano/.m2/repository/org/antlr/antlr-runtime/3.1.2/antlr-runtime-3.1.2.jar:/home/gaetano/.m2/repository/ognl/ognl/3.1.12/ognl-3.1.12.jar:/home/gaetano/.m2/repository/org/javassist/javassist/3.20.0-GA/javassist-3.20.0-GA.jar:/home/gaetano/.m2/repository/ru/vyarus/generics-resolver/3.0.1/generics-resolver-3.0.1.jar:/home/gaetano/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar:/home/gaetano/.m2/repository/com/pholser/junit-quickcheck-generators/1.0/junit-quickcheck-generators-1.0.jar:/home/gaetano/.m2/repository/org/junit/vintage/junit-vintage-engine/5.8.2/junit-vintage-engine-5.8.2.jar:/home/gaetano/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:/home/gaetano/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/gaetano/.m2/repository/org/slf4j/slf4j-simple/1.7.36/slf4j-simple-1.7.36.jar:/home/gaetano/.m2/repository/com/ibm/db2/jcc/11.1.4.4/jcc-11.1.4.4.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -32,7 +32,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/gaetano/mioProgetto/target/surefire/surefirebooter12482249621391069185.jar"/>
+    <property name="surefire.real.class.path" value="/home/gaetano/mioProgetto/target/surefire/surefirebooter5043584162985747289.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.17+8-post-Ubuntu-1ubuntu218.04"/>
     <property name="user.name" value="gaetano"/>
@@ -57,14 +57,208 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="it.isa.progetto.AppTest" time="0.026">
-    <system-out><![CDATA[inizializzo connessione per i test...DB2 driver is loaded successfully
-]]></system-out>
-  </testcase>
-  <testcase name="testPDip1" classname="it.isa.progetto.AppTest" time="0.034">
-    <system-out><![CDATA[Dipartimento: amministrazione, Numero Progetti: 0
-Dipartimento: marketing, Numero Progetti: 0
-Dipartimento: sviluppo, Numero Progetti: 10
+  <testcase name="testPDip1" classname="it.isa.progetto.AppTest" time="0.02"/>
+  <testcase name="prop_calcolaCostoPersonale(int, int, int)" classname="it.isa.progetto.AppTest" time="0.15">
+    <system-out><![CDATA[negative valueeccoli
+val: -483890065  -185091191  -618166516  x:-1  y:-2.098193305E9
+negative valueeccoli
+val: -464534408  1165838682  -1842556469  x:-1  y:1.235831344E9
+eccoli
+val: 1414559920  1847511872  1236076490  x:573425376  y:-1.468941312E9
+eccoli
+val: 1508980565  201817564  1717128990  x:-1484274430  y:-1.834807796E9
+negative valueeccoli
+val: 197438190  66977795  -1586107581  x:-1  y:-2.056126262E9
+negative valueeccoli
+val: -1130639194  555447079  -1449645088  x:-1  y:5.69989962E8
+eccoli
+val: 1072039684  380813643  1189207902  x:1972183460  y:1.551241772E9
+negative valueeccoli
+val: -1474452114  -275174812  -181045827  x:-1  y:4.27207416E8
+eccoli
+val: 1643052713  181801876  1525317996  x:-973579008  y:-6.98891084E8
+negative valueeccoli
+val: -1171295076  123099260  888589818  x:-1  y:-2.77210224E8
+negative valueeccoli
+val: 352411249  -1940502751  -318136022  x:-1  y:-1.672182895E9
+negative valueeccoli
+val: -1309148801  -1661404710  634493112  x:-1  y:-7.0680649E8
+negative valueeccoli
+val: -661423068  609755551  -480160430  x:-1  y:1.123728988E9
+negative valueeccoli
+val: 1546891717  1509892491  -874999187  x:-1  y:1.245113079E9
+negative valueeccoli
+val: 603305929  1159266486  -1477355684  x:-1  y:-1.336825626E9
+negative valueeccoli
+val: -2014301373  755986957  -994576065  x:-1  y:-1.510772633E9
+negative valueeccoli
+val: -1993718531  -1699554130  660919522  x:-1  y:-1.20911873E9
+negative valueeccoli
+val: -536767803  1783806796  -1782074038  x:-1  y:1.002928508E9
+negative valueeccoli
+val: -348993959  -2064003125  -340488474  x:-1  y:1.614167955E9
+negative valueeccoli
+val: -1833485842  1019287439  -1627624424  x:-1  y:-5.53927182E8
+negative valueeccoli
+val: 1147089245  1044985926  -1104457383  x:-1  y:5.09138798E8
+negative valueeccoli
+val: -379912786  -1679527459  -1334521889  x:-1  y:-4.27897546E8
+negative valueeccoli
+val: -2110984777  1116586330  -1444096270  x:-1  y:-1.093826218E9
+negative valueeccoli
+val: -1739126081  2113798713  342677891  x:-1  y:-2.047286649E9
+negative valueeccoli
+val: 1287216299  1054904054  -65268201  x:-1  y:1.8703317E8
+eccoli
+val: 1576645093  457855003  2045328332  x:428203171  y:-2.078321881E9
+negative valueeccoli
+val: -150218919  337738625  -1657260999  x:-1  y:-4.71316775E8
+negative valueeccoli
+val: -302828426  -243237284  1347881435  x:-1  y:-2.009534872E9
+negative valueeccoli
+val: -2338416  1042490046  1128429969  x:-1  y:7.89162208E8
+eccoli
+val: 968534756  62834278  210540685  x:-1480855956  y:-5.07220264E8
+negative valueeccoli
+val: 1803881282  -1392656895  -389018470  x:-1  y:-1.57535251E9
+negative valueeccoli
+val: 932491481  1243229776  -1168681790  x:-1  y:-9.68343088E8
+negative valueeccoli
+val: 2025980307  1081698542  -720443539  x:-1  y:-1.820578134E9
+negative valueeccoli
+val: 1263019083  -1490973963  -697254637  x:-1  y:-1.975113273E9
+negative valueeccoli
+val: -1241557343  1584696638  -340219315  x:-1  y:3.60818686E8
+negative valueeccoli
+val: -1243430607  -249045247  -1081568133  x:-1  y:-8.78481359E8
+negative valueeccoli
+val: 1014909995  -283615268  1225452665  x:-1  y:6.01188852E8
+negative valueeccoli
+val: 540469203  -12467677  -1946248335  x:-1  y:2.14079449E8
+negative valueeccoli
+val: 142216565  122073523  -1777148459  x:-1  y:8.32785871E8
+negative valueeccoli
+val: 2053823178  -1115219075  58853015  x:-1  y:-1.916394846E9
+eccoli
+val: 279141036  627162642  1733292809  x:1943501860  y:-1.611397096E9
+negative valueeccoli
+val: -1881794111  1839330843  1043002733  x:-1  y:1.203055963E9
+negative valueeccoli
+val: 1578125405  1153105840  -647690658  x:-1  y:7.18824176E8
+eccoli
+val: 2135532408  1769562831  506099872  x:-1926395640  y:-1.730732536E9
+negative valueeccoli
+val: -254584841  422909629  -2025416272  x:-1  y:1.253714779E9
+negative valueeccoli
+val: -1364179254  1134602289  -1081008060  x:-1  y:9.8055697E8
+negative valueeccoli
+val: -1897191054  1674179614  1156303240  x:-1  y:-2.087615652E9
+negative valueeccoli
+val: -1488519667  1312485095  115184061  x:-1  y:1.982944187E9
+negative valueeccoli
+val: -1705860940  -1664141083  1585876516  x:-1  y:-1.06344422E9
+eccoli
+val: 414431664  1152839206  1606978412  x:-409725344  y:-2.073087968E9
+negative valueeccoli
+val: 561458191  860380884  -101079061  x:-1  y:-6.3609282E8
+negative valueeccoli
+val: -2075600612  955931768  1976258147  x:-1  y:1.434703136E9
+negative valueeccoli
+val: 151686989  357952798  -515256597  x:-1  y:-1.149758458E9
+negative valueeccoli
+val: -942101219  271767361  417375830  x:-1  y:1.460752221E9
+negative valueeccoli
+val: 455783946  -74355819  720453999  x:-1  y:-1.81848427E9
+negative valueeccoli
+val: -364044377  1993391993  677061173  x:-1  y:-8.7978257E7
+negative valueeccoli
+val: 1494801563  1543899909  -902647491  x:-1  y:-1.365706745E9
+negative valueeccoli
+val: 1023177281  -1615847493  507383903  x:-1  y:1.66548603E8
+negative valueeccoli
+val: 1515434968  216394601  -107399900  x:-1  y:-4.92565608E8
+negative valueeccoli
+val: -7909199  352860251  -914226589  x:-1  y:2.034788075E9
+negative valueeccoli
+val: 1458111585  -1561458072  1717824376  x:-1  y:-5.86968728E8
+negative valueeccoli
+val: -1782615153  1521241852  -1962685872  x:-1  y:-1.48063366E9
+eccoli
+val: 964845647  2008237292  509504057  x:518843499  y:-1.241332524E9
+negative valueeccoli
+val: 185149352  -1391457531  -1705363720  x:-1  y:-1.63774508E9
+negative valueeccoli
+val: -2073382943  -962208702  135665056  x:-1  y:8.8366797E8
+negative valueeccoli
+val: -357501469  73775153  2095537022  x:-1  y:-1.423361933E9
+negative valueeccoli
+val: 1225315028  272985106  -2138029445  x:-1  y:-2.9017628E8
+negative valueeccoli
+val: -279951152  527901634  1199759720  x:-1  y:1.568382368E9
+negative valueeccoli
+val: 1528693570  -1987983549  1188251174  x:-1  y:5.9802631E8
+negative valueeccoli
+val: -871321912  1602907770  1485153562  x:-1  y:-6.23035568E8
+negative valueeccoli
+val: 407553136  1619311812  -969732693  x:-1  y:-8.84955712E8
+negative valueeccoli
+val: 1835919923  -1644332171  -1598334129  x:-1  y:-1.909880241E9
+negative valueeccoli
+val: 1776852360  641159998  -1205013264  x:-1  y:4.29997808E8
+negative valueeccoli
+val: 1840557742  -1133696929  850427840  x:-1  y:4.26640018E8
+negative valueeccoli
+val: -809198719  -2095979358  2035457375  x:-1  y:-3.44306782E8
+negative valueeccoli
+val: 101763133  1533632916  -726725028  x:-1  y:-1.38255558E9
+negative valueeccoli
+val: 123006935  659094179  -1949804240  x:-1  y:-7.58862875E8
+negative valueeccoli
+val: -507178930  1769873702  -645749726  x:-1  y:-2.89506924E8
+eccoli
+val: 992334176  1579798252  468386290  x:543789376  y:-1.111997312E9
+eccoli
+val: 1712012915  176509746  345465830  x:1548095432  y:-2.093974666E9
+negative valueeccoli
+val: 1608834555  -1612750338  -286706931  x:-1  y:5.34075914E8
+negative valueeccoli
+val: -1139030789  1841012173  -1046725667  x:-1  y:1.818471423E9
+negative valueeccoli
+val: -1405475712  79624068  -1824339590  x:-1  y:-3.025664E7
+negative valueeccoli
+val: 113997634  -1863881063  1587147090  x:-1  y:9.6302757E8
+eccoli
+val: 1390931681  289276040  1522478756  x:-199926356  y:-6.9278732E8
+negative valueeccoli
+val: 34001781  -1060724765  -1151971332  x:-1  y:1.440820159E9
+eccoli
+val: 480260495  1943952569  1082993407  x:1342900168  y:2.023044183E9
+negative valueeccoli
+val: 1267845920  2027413318  -1474636381  x:-1  y:1.101949632E9
+negative valueeccoli
+val: -1958153500  99430994  1659989529  x:-1  y:7.69807624E8
+negative valueeccoli
+val: -152435122  2076929075  1019636298  x:-1  y:1.696737674E9
+eccoli
+val: 55133729  890987604  1389724324  x:703436280  y:-3.03372588E8
+negative valueeccoli
+val: -785407844  221157742  -1826873187  x:-1  y:5.61790728E8
+negative valueeccoli
+val: -948447391  -1023161745  -1380050240  x:-1  y:1.980493071E9
+negative valueeccoli
+val: -2026728582  2112372613  1938853685  x:-1  y:-4.00448414E8
+negative valueeccoli
+val: -892861906  -687574958  2112071382  x:-1  y:5.32468412E8
+negative valueeccoli
+val: -1845319477  636699435  34506464  x:-1  y:-9.34249703E8
+negative valueeccoli
+val: 37125877  291897400  -926675341  x:-1  y:1.451869592E9
+eccoli
+val: 830861264  724537320  1407349055  x:502749360  y:-1.450802048E9
+negative valueeccoli
+val: 2082128018  -10629263  -885138579  x:-1  y:-8.63039886E8
+negative valueeccoli
+val: 1696150412  -249567277  -1623153175  x:-1  y:4.5697034E8
 ]]></system-out>
   </testcase>
 </testsuite>
