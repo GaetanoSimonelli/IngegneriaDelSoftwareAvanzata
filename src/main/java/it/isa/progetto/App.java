@@ -123,17 +123,17 @@ public class App
         return stipendioTotale;
     }
     
-    public static int calcolaCostoPersonale(int numeroDipendenti, int stipendioMedio, int tasseLavoro) {
+    public int calcolaCostoPersonale(int numeroDipendenti, int stipendioMedio, int tasseLavoro) {
         if((numeroDipendenti >= 0)&(stipendioMedio >= 0)&(tasseLavoro >= 0)){
             double costoPersonale_double = numeroDipendenti * (stipendioMedio + tasseLavoro);
 
-            if(costoPersonale_double > java.lang.Integer.MAX_VALUE)
+            if((costoPersonale_double > java.lang.Integer.MAX_VALUE)&&(costoPersonale_double < java.lang.Integer.MIN_VALUE))
             {
                 System.out.print("overflow");
                 return -1;
             }
-
             int costoPersonale = numeroDipendenti * (stipendioMedio + tasseLavoro);
+            System.out.print("non overflow: "+ costoPersonale_double +"("+costoPersonale+")"+" < " + java.lang.Integer.MAX_VALUE);
 
             return costoPersonale;
         } 
