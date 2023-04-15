@@ -74,27 +74,6 @@ public class AppTest
       return conn.createStatement().executeUpdate(sql);
     }
     
-    @BeforeAll
-    public static void iniziaConnessione(){
-        System.out.print("inizializzo connessione per i test...");
-        try {
-            Class.forName("com.ibm.db2.jcc.DB2Driver");
-        }
-        catch (ClassNotFoundException e) {
-            System.out.println("Please include Classpath  Where your DB2 Driver is located");
-            e.printStackTrace();
-            dbUnreachable = true;
-        }
-        System.out.println("DB2 driver is loaded successfully");
-        try{
-        conn_legacy = DriverManager.getConnection("jdbc:db2://localhost:50000/isa:retrieveMessagesFromServerOnGetMessage=true;","db2inst1","pass");
-        }catch(SQLException e){
-            System.out.println("DB2 Database connection Failed\nTest that use db will be skipped");
-            dbUnreachable = true;
-        }
-            
-    }
-    
     
     @Test
     public void testPDip1(){
