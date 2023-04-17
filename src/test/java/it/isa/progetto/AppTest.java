@@ -30,6 +30,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Unit test for simple App.
@@ -40,47 +44,52 @@ public class AppTest
     /**
      * Rigorous Test :-)
      */
-    public static Connection conn_legacy = null;
-    private static boolean dbUnreachable = false;
     
-    @InjectMocks
+    @Mock
+    private App apm;
+    @Mock
     private AppTest service;
     @Mock
     private Connection conn;
     @Mock
     private Statement stmt;
-    @Before
+    @Mock
+    private PreparedStatement pstmt;
+    @Mock
+    private ResultSet rs;
+
+    //@Before
     public void initTest() {
-       MockitoAnnotations.initMocks(this);
+        System.out.print("🐙init");
+        MockitoAnnotations.initMocks(this);
+        
     }
-   
-    public void testConnection() throws Exception {
-        // Creazione di un result set vuoto
-        ResultSet emptyResultSet = Mockito.mock(ResultSet.class);
-        Mockito.when(emptyResultSet.next()).thenReturn(false);
+    
+    
+    //@Test
+    public void testPDip1() throws Exception {
+        String query = "SELECT d.NomeDipartimento, COUNT(p.IdProgetto) AS NumeroProgetti "
+                + "FROM Dipartimento d " + "LEFT JOIN Progetto p ON d.NomeDipartimento = p.Afferenza "
+                + "GROUP BY d.NomeDipartimento;";
 
-        Mockito.when(conn.createStatement()).thenReturn(stmt);
-        Mockito.when(conn.createStatement().executeUpdate(Mockito.anyString())).thenReturn(1);
-        Mockito.when(stmt.executeQuery(Mockito.anyString())).thenReturn(emptyResultSet);
+        System.out.print("🐙in testpdip1");
+        //when(conn.prepareStatement(query)).thenReturn(pstmt);
+        //when(pstmt.executeQuery()).thenReturn(rs);
+        //when(rs.next()).thenReturn(true, false); // Simulate one row in ResultSet
+        //when(rs.getString("NomeDipartimento")).thenReturn("TestDipartimento");
+        when(rs.getInt("NumeroProgetti")).thenReturn(3);
 
-        int result = service.runQuery("");
-        Assert.assertEquals(result, 1);
-        Mockito.verify(conn.createStatement(),
-            Mockito.times(1));
-    }
-    
-    public int runQuery(String sql) throws
-         ClassNotFoundException, SQLException {
-      return conn.createStatement().executeUpdate(sql);
-    }
-    
-    
-    @Test
-    public void testPDip1(){
-        if(dbUnreachable == false){
-            App a = new App();
-            a.pDip1(conn);
-        }
+        System.out.print("🐙precall");
+        // Call the function to be tested
+        App a = new App();
+        a.pDip1(conn);
+
+        // Verify expected behavior
+        verify(conn).prepareStatement(query);
+        verify(pstmt).executeQuery();
+        verify(rs).next();
+        verify(rs).getString("NomeDipartimento");
+        verify(rs).getInt("NumeroProgetti");
     }
     
     @Property
@@ -88,10 +97,37 @@ public class AppTest
         App a = new App();
         int x = a.calcolaCostoPersonale(numeroDipendenti, stipendioMedio, tasseLavoro);
         double y = numeroDipendenti * stipendioMedio;
-        System.out.println("\nval: "+numeroDipendenti+"  "+stipendioMedio+"  "+tasseLavoro +"  x:"+x+"  y:"+y);
         if(x != -1){
-            assertTrue(y == y);
+            assertTrue(y < x);
+        }
+    }
+
+    @Property
+    public void prop_calcolaTasse(int redditoAziendale, int aliquoteFiscali, int deduzioni, int detrazioniFiscali){
+        App a = new App();
+        int x = a.calcolaTasse(redditoAziendale,aliquoteFiscali,deduzioni,detrazioniFiscali);
+        double y = redditoAziendale * aliquoteFiscali;
+        if(x != -1){
+            assertTrue(y <= x);
         }
     }
     
+    @Property
+    public void prop_budgetAnnuale(int venditePreviste, int costiProduzione, int profittoLordo, int speseOperative){
+        App a = new App();
+        int x = a.calcolaBudgetAnnuale(venditePreviste,costiProduzione,profittoLordo,speseOperative);
+        double y = venditePreviste * profittoLordo;
+        if(x != -1){
+            assertTrue(y > x);
+        }
+    }
+
+    @Property
+    public void prop_calcolaStipendio(LocalDate dataAssunzione) {
+        App a = new App();
+        int x = a.calcolaStipendio(dataAssunzione);
+        if(x != -1){
+            assertTrue(x >= 1200);
+        }
+    }
 }

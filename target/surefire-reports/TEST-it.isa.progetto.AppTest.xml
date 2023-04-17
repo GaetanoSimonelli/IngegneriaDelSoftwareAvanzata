@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="it.isa.progetto.AppTest" time="1.207" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="it.isa.progetto.AppTest" time="0.42" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="gnome"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="GB"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/gaetano/mioProgetto/target/surefire/surefirebooter10294820740820238085.jar /home/gaetano/mioProgetto/target/surefire 2023-04-15T12-09-40_121-jvmRun1 surefire8885610429183966878tmp surefire_014758454957020838783tmp"/>
+    <property name="sun.java.command" value="/home/gaetano/mioProgetto/target/surefire/surefirebooter4908240264061417978.jar /home/gaetano/mioProgetto/target/surefire 2023-04-17T19-30-32_698-jvmRun1 surefire8869746951457228506tmp surefire_06037111346358853503tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/gaetano/mioProgetto/target/test-classes:/home/gaetano/mioProgetto/target/classes:/home/gaetano/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.2/junit-jupiter-5.8.2.jar:/home/gaetano/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/home/gaetano/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/gaetano/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/home/gaetano/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.2/junit-jupiter-params-5.8.2.jar:/home/gaetano/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/home/gaetano/.m2/repository/org/jacoco/jacoco-maven-plugin/0.8.8/jacoco-maven-plugin-0.8.8.jar:/home/gaetano/.m2/repository/org/codehaus/plexus/plexus-utils/3.0.22/plexus-utils-3.0.22.jar:/home/gaetano/.m2/repository/org/apache/maven/shared/file-management/1.2.1/file-management-1.2.1.jar:/home/gaetano/.m2/repository/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar:/home/gaetano/.m2/repository/org/apache/maven/shared/maven-shared-io/1.1/maven-shared-io-1.1.jar:/home/gaetano/.m2/repository/org/apache/maven/maven-artifact/2.0.2/maven-artifact-2.0.2.jar:/home/gaetano/.m2/repository/org/apache/maven/maven-artifact-manager/2.0.2/maven-artifact-manager-2.0.2.jar:/home/gaetano/.m2/repository/org/apache/maven/maven-repository-metadata/2.0.2/maven-repository-metadata-2.0.2.jar:/home/gaetano/.m2/repository/org/apache/maven/wagon/wagon-provider-api/1.0-alpha-6/wagon-provider-api-1.0-alpha-6.jar:/home/gaetano/.m2/repository/org/codehaus/plexus/plexus-container-default/1.0-alpha-9/plexus-container-default-1.0-alpha-9.jar:/home/gaetano/.m2/repository/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.jar:/home/gaetano/.m2/repository/org/apache/maven/reporting/maven-reporting-api/3.0/maven-reporting-api-3.0.jar:/home/gaetano/.m2/repository/org/apache/maven/doxia/doxia-sink-api/1.0/doxia-sink-api-1.0.jar:/home/gaetano/.m2/repository/org/jacoco/org.jacoco.agent/0.8.8/org.jacoco.agent-0.8.8-runtime.jar:/home/gaetano/.m2/repository/org/jacoco/org.jacoco.core/0.8.8/org.jacoco.core-0.8.8.jar:/home/gaetano/.m2/repository/org/ow2/asm/asm/9.2/asm-9.2.jar:/home/gaetano/.m2/repository/org/ow2/asm/asm-commons/9.2/asm-commons-9.2.jar:/home/gaetano/.m2/repository/org/ow2/asm/asm-analysis/9.2/asm-analysis-9.2.jar:/home/gaetano/.m2/repository/org/ow2/asm/asm-tree/9.2/asm-tree-9.2.jar:/home/gaetano/.m2/repository/org/jacoco/org.jacoco.report/0.8.8/org.jacoco.report-0.8.8.jar:/home/gaetano/.m2/repository/org/mockito/mockito-all/1.10.19/mockito-all-1.10.19.jar:/home/gaetano/.m2/repository/com/pholser/junit-quickcheck-core/1.0/junit-quickcheck-core-1.0.jar:/home/gaetano/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar:/home/gaetano/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/gaetano/.m2/repository/org/javaruntype/javaruntype/1.3/javaruntype-1.3.jar:/home/gaetano/.m2/repository/org/antlr/antlr-runtime/3.1.2/antlr-runtime-3.1.2.jar:/home/gaetano/.m2/repository/ognl/ognl/3.1.12/ognl-3.1.12.jar:/home/gaetano/.m2/repository/org/javassist/javassist/3.20.0-GA/javassist-3.20.0-GA.jar:/home/gaetano/.m2/repository/ru/vyarus/generics-resolver/3.0.1/generics-resolver-3.0.1.jar:/home/gaetano/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar:/home/gaetano/.m2/repository/com/pholser/junit-quickcheck-generators/1.0/junit-quickcheck-generators-1.0.jar:/home/gaetano/.m2/repository/org/junit/vintage/junit-vintage-engine/5.8.2/junit-vintage-engine-5.8.2.jar:/home/gaetano/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:/home/gaetano/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/gaetano/.m2/repository/org/slf4j/slf4j-simple/1.7.36/slf4j-simple-1.7.36.jar:/home/gaetano/.m2/repository/com/ibm/db2/jcc/11.1.4.4/jcc-11.1.4.4.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -32,7 +32,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/gaetano/mioProgetto/target/surefire/surefirebooter10294820740820238085.jar"/>
+    <property name="surefire.real.class.path" value="/home/gaetano/mioProgetto/target/surefire/surefirebooter4908240264061417978.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.17+8-post-Ubuntu-1ubuntu218.04"/>
     <property name="user.name" value="gaetano"/>
@@ -57,208 +57,116 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="testPDip1" classname="it.isa.progetto.AppTest" time="0.023"/>
-  <testcase name="prop_calcolaCostoPersonale(int, int, int)" classname="it.isa.progetto.AppTest" time="1.195">
-    <system-out><![CDATA[negative value
-val: -1096696454  1040037708  -1078258582  x:-1  y:-1.979156936E9
-negative value
-val: 1854329224  -1408280702  -1122674699  x:-1  y:-1.734107376E9
-negative value
-val: -18685570  -299322009  -767499048  x:-1  y:1.449578418E9
-negative value
-val: -1688384188  -1769968577  1911988260  x:-1  y:3.11342012E8
-negative value
-val: -2086119747  1260208362  -1226695703  x:-1  y:-1.61116755E9
-non overflow: -1.658352256E9(-1658352256) < 2147483647
-val: 118501496  484495966  553668850  x:-1658352256  y:1.75664232E9
-negative value
-val: -214783012  -762258804  732680569  x:-1  y:1.238324304E9
-negative value
-val: -98752301  408869093  318206715  x:-1  y:4.69863615E8
-negative value
-val: -1636828589  -102275216  1412838538  x:-1  y:-9.057656E7
-negative value
-val: 119788750  -1107220842  -1898541968  x:-1  y:9.62806964E8
-negative value
-val: -436150774  -329239346  -1112122139  x:-1  y:-1.11485234E9
-negative value
-val: -115110557  -68048366  -1394447628  x:-1  y:1.26816639E9
-negative value
-val: -1590842063  -1229341716  -731327330  x:-1  y:-2.34392532E8
-negative value
-val: 571708773  -1655369230  920392145  x:-1  y:2.51129466E8
-negative value
-val: -1141822257  12164341  -766449332  x:-1  y:9.17833243E8
-negative value
-val: 1187129957  -482217035  867725073  x:-1  y:-1.473587095E9
-negative value
-val: -119893235  182152457  -340588292  x:-1  y:5.10309493E8
-negative value
-val: -1140425097  270592486  -779235354  x:-1  y:3.65948394E8
-negative value
-val: -1021370237  -959501167  927282766  x:-1  y:2.049240627E9
-negative value
-val: 1226789591  -83501749  -387710690  x:-1  y:-5.05159683E8
-negative value
-val: -659631684  -1051801656  27089087  x:-1  y:-7.90298912E8
-negative value
-val: -1651306319  -563677886  -1832814298  x:-1  y:-2.09022499E9
-negative value
-val: -1370634230  586980548  -2137626746  x:-1  y:3.90807464E8
-negative value
-val: -192594659  1916104169  1290974410  x:-1  y:-6.49398171E8
-negative value
-val: -216977440  -2058028918  -826820697  x:-1  y:-1.020997952E9
-negative value
-val: -1384187186  1072159330  -2096941401  x:-1  y:-1.911460132E9
-negative value
-val: -1995186983  -1505092073  -406926834  x:-1  y:8.28654975E8
-negative value
-val: -1165227046  -827819210  -1739432643  x:-1  y:-6.99646468E8
-negative value
-val: -1836011344  248540246  -1893426970  x:-1  y:1.982176032E9
-negative value
-val: -613414272  -1301094442  -196756543  x:-1  y:-1.244772608E9
-negative value
-val: -1251157448  -674942994  1830413867  x:-1  y:-1.671747568E9
-negative value
-val: -1874822752  901611511  784754075  x:-1  y:3.63575648E8
-negative value
-val: -2097538759  1189815879  -371105923  x:-1  y:8.12545231E8
-negative value
-val: 1953339115  -1478800711  -649109389  x:-1  y:9.53875923E8
-negative value
-val: -474835998  144577693  -427316425  x:-1  y:-3.09438054E8
-negative value
-val: -719770777  -1970037171  -527718060  x:-1  y:3.27196667E8
-negative value
-val: 25154713  174931183  -647580992  x:-1  y:-6.15491881E8
-negative value
-val: -1295301416  -1840769736  -405129112  x:-1  y:1.440532288E9
-negative value
-val: -175507843  1557325113  -1038269984  x:-1  y:8.68201173E8
-non overflow: -2.15527367E8(-215527367) < 2147483647
-val: 1088270637  685712994  541566043  x:-215527367  y:4.59112762E8
-negative value
-val: 1778217787  -828615554  1230687018  x:-1  y:1.0918785E8
-negative value
-val: -2078892228  -1707513690  1426670177  x:-1  y:1.672978664E9
-negative value
-val: 102975205  -1288895435  -780003352  x:-1  y:1.739211113E9
-non overflow: 1.971218244E9(1971218244) < 2147483647
-val: 1527457478  480877296  925979014  x:1971218244  y:1.350399392E9
-negative value
-val: 1715783651  439872369  -2037549370  x:-1  y:1.201577011E9
-negative value
-val: 1106123326  -971831581  389673438  x:-1  y:-2.45843718E8
-negative value
-val: 456671558  -1115673297  -824183773  x:-1  y:8.69091802E8
-negative value
-val: 1022995877  -599031831  1780422032  x:-1  y:1.29689133E8
-negative value
-val: 566660465  -1853527307  -773892925  x:-1  y:1.05588517E8
-negative value
-val: 1441582476  -592516723  -628816392  x:-1  y:-5.42531044E8
-negative value
-val: -345757754  704454665  -2000679044  x:-1  y:-8.02413066E8
-negative value
-val: -1092443698  1961452738  491646630  x:-1  y:-8.8178122E8
-negative value
-val: -907232068  -1554159425  490312833  x:-1  y:4.12692548E8
-negative value
-val: -178639210  -778600759  1830700810  x:-1  y:-1.47429434E8
-negative value
-val: -1108415380  -1559979955  -613468624  x:-1  y:1.92815014E9
-negative value
-val: -657395741  1095967345  161984321  x:-1  y:-5.75731405E8
-negative value
-val: -296963222  -1883317824  -127480703  x:-1  y:4.74442112E8
-negative value
-val: 66980282  269481995  -166146150  x:-1  y:2.000460542E9
-negative value
-val: 358346265  1649817322  -1426709871  x:-1  y:2.024204506E9
-negative value
-val: 928917085  -1970376469  221559719  x:-1  y:1.842079583E9
-negative value
-val: 11123727  -1998332548  643805698  x:-1  y:-1.831007676E9
-negative value
-val: 122314311  -638978194  965663440  x:-1  y:-5.27826046E8
-negative value
-val: 1185301613  1402676487  -1750707076  x:-1  y:-1.150377989E9
-negative value
-val: -1946019202  1381487251  -1846020247  x:-1  y:2.076349018E9
-negative value
-val: 1495925731  -1140943175  -1400245162  x:-1  y:-1.176645365E9
-negative value
-val: -91535102  993297805  -248821505  x:-1  y:-1.509081062E9
-negative value
-val: -1082404929  1934321622  -1413628675  x:-1  y:-1.945468246E9
-negative value
-val: -1741278435  537322475  -1011540708  x:-1  y:-1.681808737E9
-negative value
-val: -888554610  2108290185  -593562517  x:-1  y:3.64295934E8
-negative value
-val: -801522012  -1794204285  780658651  x:-1  y:-6.6380546E8
-negative value
-val: -357973865  -831824901  425409380  x:-1  y:1.828880653E9
-negative value
-val: 1405982941  1902134391  -1586489538  x:-1  y:1.896661691E9
-negative value
-val: 29255113  -2000523380  -139333387  x:-1  y:1.821626604E9
-negative value
-val: -201648551  1099599189  -1386122845  x:-1  y:-2.23907699E8
-negative value
-val: -396882518  -938995391  -1548129265  x:-1  y:3.45227818E8
-negative value
-val: 480866330  132943261  -1422973817  x:-1  y:-1.90836238E8
-negative value
-val: -1572397344  -259997399  -1086288807  x:-1  y:1.95744224E8
-negative value
-val: -1209492546  -651330138  189066946  x:-1  y:1.128710964E9
-negative value
-val: -711180649  -12803502  -331936970  x:-1  y:1.61137315E9
-negative value
-val: -2082496783  -17988348  1738515144  x:-1  y:-2.14442374E9
-negative value
-val: -201013851  24700085  -789153326  x:-1  y:2.97709993E8
-negative value
-val: -395271180  -455775106  398460335  x:-1  y:-1.49948772E9
-non overflow: 5.87220147E8(587220147) < 2147483647
-val: 835300971  1451064975  1869071946  x:587220147  y:8.01118149E8
-negative value
-val: -2014769282  1073691445  709826879  x:-1  y:1.247035158E9
-negative value
-val: 1993877898  -2013296055  -853336860  x:-1  y:-1.870775206E9
-negative value
-val: -1950659319  -323169061  -1034276753  x:-1  y:-2.086511949E9
-negative value
-val: -1326876178  1933016535  1622085041  x:-1  y:-1.329554206E9
-negative value
-val: 1104581108  -1244647389  -1968839094  x:-1  y:1.44203478E9
-negative value
-val: -2034857067  -270656210  1692928287  x:-1  y:1.48043206E8
-negative value
-val: 1086055607  -10795509  -881909232  x:-1  y:-1.096163875E9
-negative value
-val: -1782698368  1559419280  -1467864591  x:-1  y:1.701095424E9
-non overflow: -3.89973845E8(-389973845) < 2147483647
-val: 305102665  1812912001  579779794  x:-389973845  y:-8.08226103E8
-negative value
-val: -53180389  -1247039054  1327136112  x:-1  y:-1.091940922E9
-negative value
-val: -1849184808  -2074923597  -1625316398  x:-1  y:-9.86348024E8
-negative value
-val: 1408792517  -1033738588  836347426  x:-1  y:-2.96798156E8
-negative value
-val: -298396709  934174675  -1923889530  x:-1  y:-1.146559871E9
-negative value
-val: 1630510706  -373119390  1538913328  x:-1  y:-3.7980886E8
-negative value
-val: 1892750069  1562327999  -1202457487  x:-1  y:-1.475961909E9
-negative value
-val: -1464201381  -882769410  -283378819  x:-1  y:7.46624842E8
-negative value
-val: 432203657  -1305701033  -1910619251  x:-1  y:1.066101903E9
-]]></system-out>
+  <testcase name="prop_calcolaTasse(int, int, int, int)" classname="it.isa.progetto.AppTest" time="0.139">
+    <system-out><![CDATA[negative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valueoverflow/underflownegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valueoverflow/underflownegative valuenegative valueoverflow/underflownegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valueoverflow/underflownegative valuenegative valueoverflow/underflowoverflow/underflownegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative value]]></system-out>
+  </testcase>
+  <testcase name="prop_budgetAnnuale(int, int, int, int)" classname="it.isa.progetto.AppTest" time="0.069">
+    <system-out><![CDATA[negative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valueoverflow/underflownegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valueoverflow/underflownegative valuenegative valuenegative valuenegative valuenegative valueoverflow/underflownegative valuenegative valuenegative valuenegative valueoverflow/underflownegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valueoverflow/underflownegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valueoverflow/underflownegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative value]]></system-out>
+  </testcase>
+  <testcase name="prop_calcolaStipendio(LocalDate)" classname="it.isa.progetto.AppTest" time="0.089">
+    <system-out><![CDATA[
+>>dataassunzione: -755120231-07-26 mesi: 9061467044unexpected value
+>>dataassunzione: -704434797-02-25 mesi: 8453241841unexpected value
+>>dataassunzione: -849365636-07-31 mesi: 10192411904unexpected value
+>>dataassunzione: +330040605-06-04 mesi: -3960462985unexpected value
+>>dataassunzione: +526864757-05-20 mesi: -6322352809unexpected value
+>>dataassunzione: +103795278-07-25 mesi: -1245519063unexpected value
+>>dataassunzione: +954151005-12-04 mesi: -11449787791unexpected value
+>>dataassunzione: -379068320-10-06 mesi: 4548844110unexpected value
+>>dataassunzione: -639849697-06-01 mesi: 7678220638unexpected value
+>>dataassunzione: +726553317-10-22 mesi: -8718615534unexpected value
+>>dataassunzione: +185268987-01-10 mesi: -2223203564unexpected value
+>>dataassunzione: +658580518-04-16 mesi: -7902941939unexpected value
+>>dataassunzione: -627251095-11-29 mesi: 7527037408unexpected value
+>>dataassunzione: -64472200-10-28 mesi: 773690669unexpected value
+>>dataassunzione: -421497819-07-06 mesi: 5057998101unexpected value
+>>dataassunzione: +423903922-12-10 mesi: -5086822795unexpected value
+>>dataassunzione: +929682410-10-14 mesi: -11156164649unexpected value
+>>dataassunzione: +526013328-12-29 mesi: -6312135668unexpected value
+>>dataassunzione: -918886631-03-18 mesi: 11026663848unexpected value
+>>dataassunzione: +740931884-08-22 mesi: -8891158336unexpected value
+>>dataassunzione: +351958820-06-20 mesi: -4223481566unexpected value
+>>dataassunzione: -48869966-01-07 mesi: 586463871unexpected value
+>>dataassunzione: -44881662-05-06 mesi: 538604219unexpected value
+>>dataassunzione: +762037123-08-27 mesi: -9144421204unexpected value
+>>dataassunzione: +432114210-10-12 mesi: -5185346249unexpected value
+>>dataassunzione: +466763897-10-26 mesi: -5601142494unexpected value
+>>dataassunzione: -669390877-08-05 mesi: 8032714796unexpected value
+>>dataassunzione: +988385873-10-20 mesi: -11860606206unexpected value
+>>dataassunzione: -528199289-12-18 mesi: 6338415735unexpected value
+>>dataassunzione: -106722490-08-24 mesi: 1280694151unexpected value
+>>dataassunzione: -803520233-10-25 mesi: 9642267065unexpected value
+>>dataassunzione: +336642012-02-01 mesi: -4039679865unexpected value
+>>dataassunzione: -227021809-11-11 mesi: 2724285977unexpected value
+>>dataassunzione: +182049098-02-04 mesi: -2184564897unexpected value
+>>dataassunzione: +873999534-09-14 mesi: -10487970136unexpected value
+>>dataassunzione: +562992226-10-06 mesi: -6755882441unexpected value
+>>dataassunzione: -877389031-08-01 mesi: 10528692644unexpected value
+>>dataassunzione: +814295666-04-21 mesi: -9771523716unexpected value
+>>dataassunzione: -362361657-02-01 mesi: 4348364162unexpected value
+>>dataassunzione: +719309492-04-22 mesi: -8631689628unexpected value
+>>dataassunzione: -797171891-03-30 mesi: 9566086968unexpected value
+>>dataassunzione: -163143309-03-12 mesi: 1957743985unexpected value
+>>dataassunzione: +95645766-02-13 mesi: -1147724913unexpected value
+>>dataassunzione: -491566829-11-20 mesi: 5898826216unexpected value
+>>dataassunzione: -344133998-07-07 mesi: 4129632249unexpected value
+>>dataassunzione: -952153315-07-14 mesi: 11425864053unexpected value
+>>dataassunzione: +589894767-02-07 mesi: -7078712925unexpected value
+>>dataassunzione: -331995217-07-07 mesi: 3983966877unexpected value
+>>dataassunzione: +370057985-06-02 mesi: -4440671545unexpected value
+>>dataassunzione: -612962939-09-20 mesi: 7355579538unexpected value
+>>dataassunzione: -858767936-11-15 mesi: 10305239501unexpected value
+>>dataassunzione: +144070938-05-10 mesi: -1728826980unexpected value
+>>dataassunzione: -552611803-07-27 mesi: 6631365908unexpected value
+>>dataassunzione: +141962299-09-02 mesi: -1703523316unexpected value
+>>dataassunzione: +247734331-04-02 mesi: -2972787695unexpected value
+>>dataassunzione: -886362073-02-26 mesi: 10636369153unexpected value
+>>dataassunzione: +26834313-05-16 mesi: -321987480unexpected value
+>>dataassunzione: -104774104-11-20 mesi: 1257313516unexpected value
+>>dataassunzione: -484989611-11-26 mesi: 5819899600unexpected value
+>>dataassunzione: -774155271-05-23 mesi: 9289887526unexpected value
+>>dataassunzione: +176042575-03-04 mesi: -2112486622unexpected value
+>>dataassunzione: +690573343-03-18 mesi: -8286855839unexpected value
+>>dataassunzione: +634528433-02-22 mesi: -7614316918unexpected value
+>>dataassunzione: -318405055-12-12 mesi: 3820884928unexpected value
+>>dataassunzione: -520955951-11-24 mesi: 6251495680unexpected value
+>>dataassunzione: -395181107-03-08 mesi: 4742197561unexpected value
+>>dataassunzione: +976815780-07-26 mesi: -11721765087unexpected value
+>>dataassunzione: -16591574-03-15 mesi: 199123165unexpected value
+>>dataassunzione: +295504339-03-27 mesi: -3546027791unexpected value
+>>dataassunzione: -907601486-09-01 mesi: 10891242103unexpected value
+>>dataassunzione: +456674837-04-05 mesi: -5480073767unexpected value
+>>dataassunzione: +718139683-09-16 mesi: -8617651924unexpected value
+>>dataassunzione: -554477655-05-22 mesi: 6653756134unexpected value
+>>dataassunzione: -850008758-04-09 mesi: 10200129372unexpected value
+>>dataassunzione: -829465397-04-23 mesi: 9953609039unexpected value
+>>dataassunzione: -466464932-05-01 mesi: 5597603459unexpected value
+>>dataassunzione: +134367964-11-06 mesi: -1612391298unexpected value
+>>dataassunzione: +721172949-02-02 mesi: -8654051109unexpected value
+>>dataassunzione: -996040831-04-03 mesi: 11952514248unexpected value
+>>dataassunzione: -849015598-05-24 mesi: 10188211450unexpected value
+>>dataassunzione: +884188687-12-07 mesi: -10610239975unexpected value
+>>dataassunzione: +239998946-11-19 mesi: -2879963083unexpected value
+>>dataassunzione: +169068528-11-19 mesi: -2028798067unexpected value
+>>dataassunzione: +654956176-09-20 mesi: -7859449841unexpected value
+>>dataassunzione: +714927341-03-31 mesi: -8579103815unexpected value
+>>dataassunzione: -510764878-03-08 mesi: 6129202813unexpected value
+>>dataassunzione: -126034061-04-23 mesi: 1512433007unexpected value
+>>dataassunzione: +899873272-01-03 mesi: -10798454984unexpected value
+>>dataassunzione: +334451049-04-23 mesi: -4013388312unexpected value
+>>dataassunzione: -843596817-12-03 mesi: 10123186072unexpected value
+>>dataassunzione: -964720567-03-16 mesi: 11576671081unexpected value
+>>dataassunzione: +636710829-10-26 mesi: -7640505678unexpected value
+>>dataassunzione: -295378477-03-31 mesi: 3544566000unexpected value
+>>dataassunzione: -360236188-08-28 mesi: 4322858527unexpected value
+>>dataassunzione: -980659040-10-26 mesi: 11767932749unexpected value
+>>dataassunzione: +203355348-04-07 mesi: -2440239899unexpected value
+>>dataassunzione: -740750404-07-21 mesi: 8889029120unexpected value
+>>dataassunzione: -593177879-12-20 mesi: 7118158815unexpected value
+>>dataassunzione: -421743626-07-18 mesi: 5060947784unexpected value
+>>dataassunzione: +484431118-11-07 mesi: -5813149146unexpected value]]></system-out>
+  </testcase>
+  <testcase name="prop_calcolaCostoPersonale(int, int, int)" classname="it.isa.progetto.AppTest" time="0.099">
+    <system-out><![CDATA[negative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valueoverflow/underflowoverflow/underflownegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valueoverflow/underflownegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valueoverflow/underflownegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valueoverflow/underflownegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valueoverflow/underflownegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valueoverflow/underflownegative valueoverflow/underflownegative valuenegative valuenegative valuenegative valuenegative valueoverflow/underflowoverflow/underflownegative valuenegative valuenegative valueoverflow/underflownegative valuenegative valuenegative valueoverflow/underflownegative valuenegative valuenegative valuenegative valuenegative valuenegative valuenegative valueoverflow/underflow]]></system-out>
   </testcase>
 </testsuite>

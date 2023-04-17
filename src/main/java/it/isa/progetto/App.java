@@ -47,7 +47,7 @@ public class App
             String s = pDip3(pstmt);
             System.out.print(s);
             pImp2(pstmt);
-            pDip1(conn);
+            //pDip1(conn);
             pPro2(conn);
             
         } catch (SQLException e) {
@@ -110,31 +110,34 @@ public class App
   
 
     //query di calcolo
-    public static double calcolaStipendio(LocalDate dataAssunzione) {
+    public int calcolaStipendio(LocalDate dataAssunzione) {
         // Calcola il numero di mesi tra la data di assunzione e la data corrente
         long mesiPassati = ChronoUnit.MONTHS.between(dataAssunzione, LocalDate.now());
-
-        // Calcola il numero di semestri completi passati
-        int semestriPassati = (int) (mesiPassati / 6);
-        double importoAggiuntivo = 75 * semestriPassati;
-        importoAggiuntivo = Math.min(importoAggiuntivo, 2200);
-        double stipendioTotale = 1200 + importoAggiuntivo;
-
-        return stipendioTotale;
+        if((mesiPassati > 0)&&(mesiPassati < 1200)){
+            // Calcola il numero di semestri completi passati
+            int semestriPassati = (int) (mesiPassati / 6);
+            int importoAggiuntivo = 75 * semestriPassati;
+            importoAggiuntivo = Math.min(importoAggiuntivo, 2200);
+            int stipendioTotale = 1200 + importoAggiuntivo;
+            
+            return stipendioTotale;
+        }
+        else
+        {
+            System.out.print("unexpected value");
+            return -1;
+        }
     }
     
     public int calcolaCostoPersonale(int numeroDipendenti, int stipendioMedio, int tasseLavoro) {
-        if((numeroDipendenti >= 0)&(stipendioMedio >= 0)&(tasseLavoro >= 0)){
-            double costoPersonale_double = numeroDipendenti * (stipendioMedio + tasseLavoro);
-
-            if((costoPersonale_double > java.lang.Integer.MAX_VALUE)&&(costoPersonale_double < java.lang.Integer.MIN_VALUE))
+        if((numeroDipendenti >= 0)&&(stipendioMedio >= 0)&&(tasseLavoro >= 0)){
+            double costoPersonale_double = (double) numeroDipendenti * ((double) stipendioMedio + (double) tasseLavoro);
+            if((costoPersonale_double > java.lang.Integer.MAX_VALUE)||(costoPersonale_double < java.lang.Integer.MIN_VALUE))
             {
-                System.out.print("overflow");
+                System.out.print("overflow/underflow");
                 return -1;
             }
             int costoPersonale = numeroDipendenti * (stipendioMedio + tasseLavoro);
-            System.out.print("non overflow: "+ costoPersonale_double +"("+costoPersonale+")"+" < " + java.lang.Integer.MAX_VALUE);
-
             return costoPersonale;
         } 
         else
@@ -144,29 +147,56 @@ public class App
         }
     }
 
-    public static double calcolaTasse(double redditoAziendale, double aliquoteFiscali, double deduzioni, double detrazioniFiscali) {
-        double tasseDaVersare = (redditoAziendale * aliquoteFiscali) - (deduzioni + detrazioniFiscali);
-        return tasseDaVersare;
+    public int calcolaTasse(int redditoAziendale, int aliquoteFiscali, int deduzioni, int detrazioniFiscali) {
+        if((redditoAziendale >= 0)&&(aliquoteFiscali >= 0)&&(deduzioni >= 0)&&(detrazioniFiscali >= 0)){
+            double tasseDaVersare = ((double) redditoAziendale * (double) aliquoteFiscali) - ((double) deduzioni + (double) detrazioniFiscali);
+            if((tasseDaVersare > java.lang.Integer.MAX_VALUE)||(tasseDaVersare < java.lang.Integer.MIN_VALUE))
+            {
+                System.out.print("overflow/underflow");
+                return -1;
+            }
+            int tasseDaVersareR = (int) tasseDaVersare;
+            return tasseDaVersareR;
+        } 
+        else
+        {
+            System.out.print("negative value");
+            return -1;
+        }
     }
 
-    public static double calcolaBudgetAnnuale(double venditePreviste, double costiProduzione, double margineProfitto, double speseOperative) {
-        double budgetAnnuale = (venditePreviste - costiProduzione) * margineProfitto - speseOperative;
-        return budgetAnnuale;
+    public int calcolaBudgetAnnuale(int venditePreviste, int costiProduzione, int profittoLordo, int speseOperative) {
+        if((venditePreviste >= 0)&&(costiProduzione >= 0)&&(profittoLordo >= 0)&&(speseOperative >= 0)){
+            double budgetAnnuale = (double) venditePreviste * ((double) profittoLordo - (double) costiProduzione) - (double) speseOperative;
+            if((budgetAnnuale > java.lang.Integer.MAX_VALUE)||(budgetAnnuale < java.lang.Integer.MIN_VALUE))
+            {
+                System.out.print("overflow/underflow");
+                return -1;
+            }
+            int budgetAnnualeR = (int) budgetAnnuale;
+            return budgetAnnualeR;
+        } 
+        else
+        {
+            System.out.print("negative value");
+            return -1;
+        }
     }
     
     //query visualizzazione dati
     
-      public static void pDip1(Connection conn){
+      public void pDip1(Connection conn){
         try{
             String query = "SELECT d.NomeDipartimento, COUNT(p.IdProgetto) AS NumeroProgetti " +
                         "FROM Dipartimento d " +
                         "LEFT JOIN Progetto p ON d.NomeDipartimento = p.Afferenza " +
                         "GROUP BY d.NomeDipartimento;";
             
+            System.out.print("q>"+query);
             PreparedStatement pstmt = conn.prepareStatement(query);
-                     
+            System.out.print("p>"+pstmt.toString());
             ResultSet rs = pstmt.executeQuery();
-
+            System.out.print("r>"+rs.toString());
                 // Stampa dei risultati
                 while (rs.next()) {
                     String nomeDipartimento = rs.getString("NomeDipartimento");
