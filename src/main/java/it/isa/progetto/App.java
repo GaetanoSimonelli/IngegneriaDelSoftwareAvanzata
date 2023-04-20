@@ -41,14 +41,12 @@ public class App
         boolean found = false;
         try {
             conn = DriverManager.getConnection("jdbc:db2://localhost:50000/isa:retrieveMessagesFromServerOnGetMessage=true;","db2inst1","pass");
-            pstmt = conn.prepareStatement("Select * from Impiegato");
-            printa(pstmt);
             pstmt = conn.prepareStatement("SELECT Afferenza, SoddisfazioneAziendale, SupportoColleghi,ComunicazioneInterna FROM Impiegato RIGHT JOIN Questionario ON Impiegato.IdImpiegato = Questionario.Appartenenza ORDER BY Impiegato.Afferenza");
-            String s = pDip3(pstmt);
-            System.out.print(s);
-            pImp2(pstmt);
+            //String s = pDip3(pstmt);
+            //System.out.print(s);
+            //pImp2(pstmt);
             //pDip1(conn);
-            pPro2(conn);
+            //pPro2(conn);
             
         } catch (SQLException e) {
             System.out.println("DB2 Database connection Failed");
@@ -57,7 +55,95 @@ public class App
         }
     }
     
-    public static void printa(PreparedStatement pstmt) {
+    //strategy pattern
+    public interface TipoStipendio{
+        public int eseguiCalcStipendio(LocalDate dataAssunzione);
+    }
+    
+    static class ContestoStipendio {
+        private TipoStipendio contesto;
+        
+        public ContestoStipendio(TipoStipendio c){
+            this.contesto = c;
+        }
+        
+        public int eseguiCalcolo(LocalDate dataAssunzione){
+            return contesto.eseguiCalcStipendio(dataAssunzione);
+        }
+    }
+    
+    static class cStipendioImpiegato implements TipoStipendio{
+
+        public int eseguiCalcStipendio(LocalDate dataAssunzione) {
+            // Calcola il numero di mesi tra la data di assunzione e la data corrente
+            long mesiPassati = ChronoUnit.MONTHS.between(dataAssunzione, LocalDate.now());
+            if((mesiPassati >= 0)&&(mesiPassati < 1200)){
+                // Calcola il numero di semestri completi passati
+                int semestriPassati = (int) (mesiPassati / 6);
+                int importoAggiuntivo = 75 * semestriPassati;
+                importoAggiuntivo = Math.min(importoAggiuntivo, 2200);
+                int stipendioTotale = 1200 + importoAggiuntivo;
+
+                return stipendioTotale;
+            }
+            else
+            {
+                System.out.print("unexpected value");
+                return -1;
+            }
+        }
+    }
+    
+    static class cStipendioAmministratore implements TipoStipendio{
+
+        public int eseguiCalcStipendio(LocalDate dataAssunzione) {
+            // Calcola il numero di mesi tra la data di assunzione e la data corrente;;
+            long mesiPassati = ChronoUnit.MONTHS.between(dataAssunzione, LocalDate.now());
+            System.out.print("   d:"+dataAssunzione.toString()+" m:"+mesiPassati);
+            if((mesiPassati >= 0)&&(mesiPassati < 1200)){
+                // Calcola il numero di semestri completi passati
+                System.out.print("PASS!!\n\n\n\n");
+                int semestriPassati = (int) (mesiPassati / 6);
+                int importoAggiuntivo = 110 * semestriPassati;
+                importoAggiuntivo = Math.min(importoAggiuntivo, 4000);
+                int stipendioTotale = 1600 + importoAggiuntivo;
+
+                return stipendioTotale;
+            }
+            else
+            {
+                System.out.print("unexpected value");
+                return -1;
+            }
+        }
+    }
+    
+    static class cStipendioStagista implements TipoStipendio{
+
+        public int eseguiCalcStipendio(LocalDate dataAssunzione) {
+            // Calcola il numero di mesi tra la data di assunzione e la data corrente
+            long mesiPassati = ChronoUnit.MONTHS.between(dataAssunzione, LocalDate.now());
+            if((mesiPassati >= 0)&&(mesiPassati < 1200)){
+                // Calcola il numero di semestri completi passati
+                int semestriPassati = (int) (mesiPassati / 6);
+                int importoAggiuntivo = 100 * semestriPassati;
+                importoAggiuntivo = Math.min(importoAggiuntivo, 1200);
+                int stipendioTotale = 400 + importoAggiuntivo;
+
+                return stipendioTotale;
+            }
+            else
+            {
+                System.out.print("unexpected value");
+                return -1;
+            }
+        }
+    }
+    
+    //END strategy pattern
+    
+    
+    /*public static void printa(PreparedStatement pstmt) {
         try {
             ResultSet rset = pstmt.executeQuery();
             int column_count = (rset.getMetaData()).getColumnCount();
@@ -73,7 +159,7 @@ public class App
         } catch (SQLException ex) {
             System.out.print("Errore nella funzione printa: " + ex);
         }
-    }
+    }*/
 
     public static void create_impiegato(Connection conn, int idImpiegato,int Afferenza, String Nome, String Cognome,LocalDate DataAssunzione ,int Stipendio){
         try{
@@ -110,24 +196,6 @@ public class App
   
 
     //query di calcolo
-    public int calcolaStipendio(LocalDate dataAssunzione) {
-        // Calcola il numero di mesi tra la data di assunzione e la data corrente
-        long mesiPassati = ChronoUnit.MONTHS.between(dataAssunzione, LocalDate.now());
-        if((mesiPassati > 0)&&(mesiPassati < 1200)){
-            // Calcola il numero di semestri completi passati
-            int semestriPassati = (int) (mesiPassati / 6);
-            int importoAggiuntivo = 75 * semestriPassati;
-            importoAggiuntivo = Math.min(importoAggiuntivo, 2200);
-            int stipendioTotale = 1200 + importoAggiuntivo;
-            
-            return stipendioTotale;
-        }
-        else
-        {
-            System.out.print("unexpected value");
-            return -1;
-        }
-    }
     
     public int calcolaCostoPersonale(int numeroDipendenti, int stipendioMedio, int tasseLavoro) {
         if((numeroDipendenti >= 0)&&(stipendioMedio >= 0)&&(tasseLavoro >= 0)){
@@ -192,11 +260,8 @@ public class App
                         "LEFT JOIN Progetto p ON d.NomeDipartimento = p.Afferenza " +
                         "GROUP BY d.NomeDipartimento;";
             
-            System.out.print("q>"+query);
             PreparedStatement pstmt = conn.prepareStatement(query);
-            System.out.print("p>"+pstmt.toString());
             ResultSet rs = pstmt.executeQuery();
-            System.out.print("r>"+rs.toString());
                 // Stampa dei risultati
                 while (rs.next()) {
                     String nomeDipartimento = rs.getString("NomeDipartimento");
@@ -208,7 +273,7 @@ public class App
         }
     }
     
-    public static void pImp2(PreparedStatement pstmt) {
+    public void pImp2(Connection conn) {
         try {
             String query = "SELECT D.NomeDipartimento AS Dipartimento, " +
                     "AVG(Q.SoddisfazioneAziendale) AS MediaSoddisfazioneAziendale, " +
@@ -218,7 +283,9 @@ public class App
                     "LEFT JOIN Impiegato I ON D.NomeDipartimento = I.Afferenza " +
                     "LEFT JOIN Questionario Q ON I.IdImpiegato = Q.Appartenenza " +
                     "GROUP BY D.NomeDipartimento;";
-            ResultSet rs = pstmt.executeQuery(query);
+
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
     
             // Stampa dei risultati
             while (rs.next()) {
@@ -236,7 +303,7 @@ public class App
         }
     }
     
-    public static void pPro3(Connection conn) {
+    public void pPro3(Connection conn) {
         try {
             String query = "SELECT Fase, AVG(DAYS(CURRENT_DATE) - DAYS(DataInizio)) AS TempoMedio " +
                            "FROM FaseProgetto " +
@@ -255,7 +322,7 @@ public class App
         }
     }
     
-    public static void pPro1(Connection conn){
+    public void pPro1(Connection conn){
     try{
         String query = "SELECT e.IdProdotto, e.Versione, e.Guadagno * e.Vendite AS GuadagnoTotale " +
                     "FROM Evoluzione e;";
@@ -277,7 +344,7 @@ public class App
 }
 
     
-    public static void pPro2(Connection conn){
+    public void pPro2(Connection conn){
         try{
             String query = "SELECT e.IdProdotto, e.Versione, e.Vendite - LAG(e.Vendite) OVER (PARTITION BY e.IdProdotto ORDER BY e.Versione) AS VariazioneVendite " +
                         "FROM Evoluzione e " +
@@ -297,10 +364,10 @@ public class App
         }
     }
     
-    public static String pDip3(PreparedStatement pstmt){
+    public String pDip3(Connection conn){
         try {
+            PreparedStatement pstmt = conn.prepareStatement("SELECT Afferenza, SoddisfazioneAziendale, SupportoColleghi,ComunicazioneInterna FROM Impiegato RIGHT JOIN Questionario ON Impiegato.IdImpiegato = Questionario.Appartenenza ORDER BY Impiegato.Afferenza");
             ResultSet rset = pstmt.executeQuery();
-            int column_count = (rset.getMetaData()).getColumnCount();
             if (rset != null) {
                 String outputS = "";
                 String dipI = "";

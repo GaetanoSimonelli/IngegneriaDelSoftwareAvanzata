@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>App.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mioProgetto</a> &gt; <a href="index.source.html" class="el_package">it.isa.progetto</a> &gt; <span class="el_source">App.java</span></div><h1>App.java</h1><pre class="source lang-java linenums">package it.isa.progetto;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
+/**
+ * Hello world!
+ *
+ */
+<span class="fc" id="L15">public class App </span>
+{
+    public static void main(String[] args) {
+<span class="nc" id="L18">        System.out.println(&quot;hello guyz&quot;);</span>
+        
+<span class="nc" id="L20">        Scanner myObj = new Scanner(System.in);</span>
+<span class="nc" id="L21">        LocalDate dateObj = LocalDate.now();</span>
+<span class="nc" id="L22">        System.out.println(&quot;Start &quot;+ dateObj);</span>
+<span class="nc" id="L23">        int looper = 1;</span>
+        
+        //String test = myObj.nextLine();
+        //System.out.println(&quot;hai scritto&quot;+test);
+        
+
+        try {
+<span class="nc" id="L30">            Class.forName(&quot;com.ibm.db2.jcc.DB2Driver&quot;);</span>
+        }
+<span class="nc" id="L32">        catch (ClassNotFoundException e) {</span>
+<span class="nc" id="L33">            System.out.println(&quot;Please include Classpath  Where your DB2 Driver is located&quot;);</span>
+<span class="nc" id="L34">            e.printStackTrace();</span>
+<span class="nc" id="L35">            return;</span>
+<span class="nc" id="L36">        }</span>
+<span class="nc" id="L37">        System.out.println(&quot;DB2 driver is loaded successfully&quot;);</span>
+<span class="nc" id="L38">        Connection conn = null;</span>
+<span class="nc" id="L39">        PreparedStatement pstmt = null;</span>
+<span class="nc" id="L40">        ResultSet rset = null;</span>
+<span class="nc" id="L41">        boolean found = false;</span>
+        try {
+<span class="nc" id="L43">            conn = DriverManager.getConnection(&quot;jdbc:db2://localhost:50000/isa:retrieveMessagesFromServerOnGetMessage=true;&quot;,&quot;db2inst1&quot;,&quot;pass&quot;);</span>
+<span class="nc" id="L44">            pstmt = conn.prepareStatement(&quot;SELECT Afferenza, SoddisfazioneAziendale, SupportoColleghi,ComunicazioneInterna FROM Impiegato RIGHT JOIN Questionario ON Impiegato.IdImpiegato = Questionario.Appartenenza ORDER BY Impiegato.Afferenza&quot;);</span>
+            //String s = pDip3(pstmt);
+            //System.out.print(s);
+            //pImp2(pstmt);
+            //pDip1(conn);
+            //pPro2(conn);
+            
+<span class="nc" id="L51">        } catch (SQLException e) {</span>
+<span class="nc" id="L52">            System.out.println(&quot;DB2 Database connection Failed&quot;);</span>
+<span class="nc" id="L53">            e.printStackTrace();</span>
+<span class="nc" id="L54">            return;</span>
+<span class="nc" id="L55">        }</span>
+<span class="nc" id="L56">    }</span>
+    
+    //strategy pattern
+    public interface TipoStipendio{
+        public int eseguiCalcStipendio(LocalDate dataAssunzione);
+    }
+    
+    static class ContestoStipendio {
+        private TipoStipendio contesto;
+        
+<span class="fc" id="L66">        public ContestoStipendio(TipoStipendio c){</span>
+<span class="fc" id="L67">            this.contesto = c;</span>
+<span class="fc" id="L68">        }</span>
+        
+        public int eseguiCalcolo(LocalDate dataAssunzione){
+<span class="fc" id="L71">            return contesto.eseguiCalcStipendio(dataAssunzione);</span>
+        }
+    }
+    
+<span class="fc" id="L75">    static class cStipendioImpiegato implements TipoStipendio{</span>
+
+        public int eseguiCalcStipendio(LocalDate dataAssunzione) {
+            // Calcola il numero di mesi tra la data di assunzione e la data corrente
+<span class="fc" id="L79">            long mesiPassati = ChronoUnit.MONTHS.between(dataAssunzione, LocalDate.now());</span>
+<span class="fc bfc" id="L80" title="All 4 branches covered.">            if((mesiPassati &gt;= 0)&amp;&amp;(mesiPassati &lt; 1200)){</span>
+                // Calcola il numero di semestri completi passati
+<span class="fc" id="L82">                int semestriPassati = (int) (mesiPassati / 6);</span>
+<span class="fc" id="L83">                int importoAggiuntivo = 75 * semestriPassati;</span>
+<span class="fc" id="L84">                importoAggiuntivo = Math.min(importoAggiuntivo, 2200);</span>
+<span class="fc" id="L85">                int stipendioTotale = 1200 + importoAggiuntivo;</span>
+
+<span class="fc" id="L87">                return stipendioTotale;</span>
+            }
+            else
+            {
+<span class="fc" id="L91">                System.out.print(&quot;unexpected value&quot;);</span>
+<span class="fc" id="L92">                return -1;</span>
+            }
+        }
+    }
+    
+<span class="fc" id="L97">    static class cStipendioAmministratore implements TipoStipendio{</span>
+
+        public int eseguiCalcStipendio(LocalDate dataAssunzione) {
+            // Calcola il numero di mesi tra la data di assunzione e la data corrente;;
+<span class="fc" id="L101">            long mesiPassati = ChronoUnit.MONTHS.between(dataAssunzione, LocalDate.now());</span>
+<span class="fc" id="L102">            System.out.print(&quot;   d:&quot;+dataAssunzione.toString()+&quot; m:&quot;+mesiPassati);</span>
+<span class="fc bfc" id="L103" title="All 4 branches covered.">            if((mesiPassati &gt;= 0)&amp;&amp;(mesiPassati &lt; 1200)){</span>
+                // Calcola il numero di semestri completi passati
+<span class="fc" id="L105">                System.out.print(&quot;PASS!!\n\n\n\n&quot;);</span>
+<span class="fc" id="L106">                int semestriPassati = (int) (mesiPassati / 6);</span>
+<span class="fc" id="L107">                int importoAggiuntivo = 110 * semestriPassati;</span>
+<span class="fc" id="L108">                importoAggiuntivo = Math.min(importoAggiuntivo, 4000);</span>
+<span class="fc" id="L109">                int stipendioTotale = 1600 + importoAggiuntivo;</span>
+
+<span class="fc" id="L111">                return stipendioTotale;</span>
+            }
+            else
+            {
+<span class="fc" id="L115">                System.out.print(&quot;unexpected value&quot;);</span>
+<span class="fc" id="L116">                return -1;</span>
+            }
+        }
+    }
+    
+<span class="fc" id="L121">    static class cStipendioStagista implements TipoStipendio{</span>
+
+        public int eseguiCalcStipendio(LocalDate dataAssunzione) {
+            // Calcola il numero di mesi tra la data di assunzione e la data corrente
+<span class="fc" id="L125">            long mesiPassati = ChronoUnit.MONTHS.between(dataAssunzione, LocalDate.now());</span>
+<span class="fc bfc" id="L126" title="All 4 branches covered.">            if((mesiPassati &gt;= 0)&amp;&amp;(mesiPassati &lt; 1200)){</span>
+                // Calcola il numero di semestri completi passati
+<span class="fc" id="L128">                int semestriPassati = (int) (mesiPassati / 6);</span>
+<span class="fc" id="L129">                int importoAggiuntivo = 100 * semestriPassati;</span>
+<span class="fc" id="L130">                importoAggiuntivo = Math.min(importoAggiuntivo, 1200);</span>
+<span class="fc" id="L131">                int stipendioTotale = 400 + importoAggiuntivo;</span>
+
+<span class="fc" id="L133">                return stipendioTotale;</span>
+            }
+            else
+            {
+<span class="fc" id="L137">                System.out.print(&quot;unexpected value&quot;);</span>
+<span class="fc" id="L138">                return -1;</span>
+            }
+        }
+    }
+    
+    //END strategy pattern
+    
+    
+    /*public static void printa(PreparedStatement pstmt) {
+        try {
+            ResultSet rset = pstmt.executeQuery();
+            int column_count = (rset.getMetaData()).getColumnCount();
+            if (rset != null) {
+                while (rset.next()) {
+                    for (int i = 1; i &lt;= column_count; i++) {
+                        String columnValue = rset.getString(i);
+                        System.out.print(&quot;   &quot; + rset.getMetaData().getColumnName(i) + &quot; = &quot; + columnValue + &quot;   &quot;);
+                    }
+                    System.out.print(&quot;\n&quot;);
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.print(&quot;Errore nella funzione printa: &quot; + ex);
+        }
+    }*/
+
+    public static void create_impiegato(Connection conn, int idImpiegato,int Afferenza, String Nome, String Cognome,LocalDate DataAssunzione ,int Stipendio){
+        try{
+<span class="nc" id="L166">            String sql = &quot;INSERT INTO Impiegato (IdImpiegato, Afferenza, Nome, Cognome, DataAssunzione, Stipendio) VALUES (?, ?, ?, ?, ?, ?)&quot;;</span>
+<span class="nc" id="L167">            try (PreparedStatement stmt = conn.prepareStatement(sql)) {</span>
+<span class="nc" id="L168">                stmt.setInt(1, idImpiegato);</span>
+<span class="nc" id="L169">                stmt.setInt(2, Afferenza);</span>
+<span class="nc" id="L170">                stmt.setString(3, Nome);</span>
+<span class="nc" id="L171">                stmt.setString(4, Cognome);</span>
+<span class="nc" id="L172">                stmt.setDate(5, java.sql.Date.valueOf(DataAssunzione));</span>
+<span class="nc" id="L173">                stmt.setInt(6, Stipendio);</span>
+<span class="nc" id="L174">                int result = stmt.executeUpdate();</span>
+<span class="nc" id="L175">                System.out.println(&quot;Result: &quot; + result);</span>
+            }
+<span class="nc" id="L177">        }catch(SQLException ex){</span>
+<span class="nc" id="L178">            System.out.print(&quot;Errore nella funzione: &quot; + ex);</span>
+<span class="nc" id="L179">        }</span>
+<span class="nc" id="L180">    }</span>
+    
+    public static void delete_impiegato(Connection conn, int idImpiegato) {
+    try {
+<span class="nc" id="L184">        String sql = &quot;DELETE FROM Impiegato WHERE IdImpiegato = ?&quot;;</span>
+<span class="nc" id="L185">        try (PreparedStatement stmt = conn.prepareStatement(sql)) {</span>
+<span class="nc" id="L186">            stmt.setInt(1, idImpiegato);</span>
+<span class="nc" id="L187">            int result = stmt.executeUpdate();</span>
+<span class="nc" id="L188">            System.out.println(&quot;Result: &quot; + result);</span>
+        }
+<span class="nc" id="L190">    } catch (SQLException ex) {</span>
+<span class="nc" id="L191">        System.out.print(&quot;Errore nella funzione: &quot; + ex);</span>
+<span class="nc" id="L192">    }</span>
+<span class="nc" id="L193">}</span>
+
+    
+  
+
+    //query di calcolo
+    
+    public int calcolaCostoPersonale(int numeroDipendenti, int stipendioMedio, int tasseLavoro) {
+<span class="fc bfc" id="L201" title="All 6 branches covered.">        if((numeroDipendenti &gt;= 0)&amp;&amp;(stipendioMedio &gt;= 0)&amp;&amp;(tasseLavoro &gt;= 0)){</span>
+<span class="fc" id="L202">            double costoPersonale_double = (double) numeroDipendenti * ((double) stipendioMedio + (double) tasseLavoro);</span>
+<span class="pc bpc" id="L203" title="1 of 4 branches missed.">            if((costoPersonale_double &gt; java.lang.Integer.MAX_VALUE)||(costoPersonale_double &lt; java.lang.Integer.MIN_VALUE))</span>
+            {
+<span class="fc" id="L205">                System.out.print(&quot;overflow/underflow&quot;);</span>
+<span class="fc" id="L206">                return -1;</span>
+            }
+<span class="fc" id="L208">            int costoPersonale = numeroDipendenti * (stipendioMedio + tasseLavoro);</span>
+<span class="fc" id="L209">            return costoPersonale;</span>
+        } 
+        else
+        {
+<span class="fc" id="L213">            System.out.print(&quot;negative value&quot;);</span>
+<span class="fc" id="L214">            return -1;</span>
+        }
+    }
+
+    public int calcolaTasse(int redditoAziendale, int aliquoteFiscali, int deduzioni, int detrazioniFiscali) {
+<span class="fc bfc" id="L219" title="All 8 branches covered.">        if((redditoAziendale &gt;= 0)&amp;&amp;(aliquoteFiscali &gt;= 0)&amp;&amp;(deduzioni &gt;= 0)&amp;&amp;(detrazioniFiscali &gt;= 0)){</span>
+<span class="fc" id="L220">            double tasseDaVersare = ((double) redditoAziendale * (double) aliquoteFiscali) - ((double) deduzioni + (double) detrazioniFiscali);</span>
+<span class="pc bpc" id="L221" title="1 of 4 branches missed.">            if((tasseDaVersare &gt; java.lang.Integer.MAX_VALUE)||(tasseDaVersare &lt; java.lang.Integer.MIN_VALUE))</span>
+            {
+<span class="fc" id="L223">                System.out.print(&quot;overflow/underflow&quot;);</span>
+<span class="fc" id="L224">                return -1;</span>
+            }
+<span class="fc" id="L226">            int tasseDaVersareR = (int) tasseDaVersare;</span>
+<span class="fc" id="L227">            return tasseDaVersareR;</span>
+        } 
+        else
+        {
+<span class="fc" id="L231">            System.out.print(&quot;negative value&quot;);</span>
+<span class="fc" id="L232">            return -1;</span>
+        }
+    }
+
+    public int calcolaBudgetAnnuale(int venditePreviste, int costiProduzione, int profittoLordo, int speseOperative) {
+<span class="fc bfc" id="L237" title="All 8 branches covered.">        if((venditePreviste &gt;= 0)&amp;&amp;(costiProduzione &gt;= 0)&amp;&amp;(profittoLordo &gt;= 0)&amp;&amp;(speseOperative &gt;= 0)){</span>
+<span class="fc" id="L238">            double budgetAnnuale = (double) venditePreviste * ((double) profittoLordo - (double) costiProduzione) - (double) speseOperative;</span>
+<span class="fc bfc" id="L239" title="All 4 branches covered.">            if((budgetAnnuale &gt; java.lang.Integer.MAX_VALUE)||(budgetAnnuale &lt; java.lang.Integer.MIN_VALUE))</span>
+            {
+<span class="fc" id="L241">                System.out.print(&quot;overflow/underflow&quot;);</span>
+<span class="fc" id="L242">                return -1;</span>
+            }
+<span class="fc" id="L244">            int budgetAnnualeR = (int) budgetAnnuale;</span>
+<span class="fc" id="L245">            return budgetAnnualeR;</span>
+        } 
+        else
+        {
+<span class="fc" id="L249">            System.out.print(&quot;negative value&quot;);</span>
+<span class="fc" id="L250">            return -1;</span>
+        }
+    }
+    
+    //query visualizzazione dati
+    
+      public void pDip1(Connection conn){
+        try{
+<span class="fc" id="L258">            String query = &quot;SELECT d.NomeDipartimento, COUNT(p.IdProgetto) AS NumeroProgetti &quot; +</span>
+                        &quot;FROM Dipartimento d &quot; +
+                        &quot;LEFT JOIN Progetto p ON d.NomeDipartimento = p.Afferenza &quot; +
+                        &quot;GROUP BY d.NomeDipartimento;&quot;;
+            
+<span class="fc" id="L263">            PreparedStatement pstmt = conn.prepareStatement(query);</span>
+<span class="fc" id="L264">            ResultSet rs = pstmt.executeQuery();</span>
+                // Stampa dei risultati
+<span class="fc bfc" id="L266" title="All 2 branches covered.">                while (rs.next()) {</span>
+<span class="fc" id="L267">                    String nomeDipartimento = rs.getString(&quot;NomeDipartimento&quot;);</span>
+<span class="fc" id="L268">                    int numeroProgetti = rs.getInt(&quot;NumeroProgetti&quot;);</span>
+<span class="fc" id="L269">                    System.out.println(&quot;Dipartimento: &quot; + nomeDipartimento + &quot;, Numero Progetti: &quot; + numeroProgetti);</span>
+<span class="fc" id="L270">                }</span>
+<span class="nc" id="L271">        }catch (SQLException ex) {</span>
+<span class="nc" id="L272">            System.out.print(&quot;Errore nella funzione:: &quot; + ex);</span>
+<span class="fc" id="L273">        }</span>
+<span class="fc" id="L274">    }</span>
+    
+    public void pImp2(Connection conn) {
+        try {
+<span class="fc" id="L278">            String query = &quot;SELECT D.NomeDipartimento AS Dipartimento, &quot; +</span>
+                    &quot;AVG(Q.SoddisfazioneAziendale) AS MediaSoddisfazioneAziendale, &quot; +
+                    &quot;AVG(Q.SupportoColleghi) AS MediaSupportoColleghi, &quot; +
+                    &quot;AVG(Q.ComunicazioneInterna) AS MediaComunicazioneInterna &quot; +
+                    &quot;FROM Dipartimento D &quot; +
+                    &quot;LEFT JOIN Impiegato I ON D.NomeDipartimento = I.Afferenza &quot; +
+                    &quot;LEFT JOIN Questionario Q ON I.IdImpiegato = Q.Appartenenza &quot; +
+                    &quot;GROUP BY D.NomeDipartimento;&quot;;
+
+<span class="fc" id="L287">            PreparedStatement pstmt = conn.prepareStatement(query);</span>
+<span class="fc" id="L288">            ResultSet rs = pstmt.executeQuery();</span>
+    
+            // Stampa dei risultati
+<span class="fc bfc" id="L291" title="All 2 branches covered.">            while (rs.next()) {</span>
+<span class="fc" id="L292">                String dipartimento = rs.getString(&quot;Dipartimento&quot;);</span>
+<span class="fc" id="L293">                double mediaSoddisfazioneAziendale = rs.getDouble(&quot;MediaSoddisfazioneAziendale&quot;);</span>
+<span class="fc" id="L294">                double mediaSupportoColleghi = rs.getDouble(&quot;MediaSupportoColleghi&quot;);</span>
+<span class="fc" id="L295">                double mediaComunicazioneInterna = rs.getDouble(&quot;MediaComunicazioneInterna&quot;);</span>
+<span class="fc" id="L296">                System.out.println(&quot;Dipartimento: &quot; + dipartimento +</span>
+                        &quot;, Media Soddisfazione Aziendale: &quot; + mediaSoddisfazioneAziendale +
+                        &quot;, Media Supporto Colleghi: &quot; + mediaSupportoColleghi +
+                        &quot;, Media Comunicazione Interna: &quot; + mediaComunicazioneInterna);
+<span class="fc" id="L300">            }</span>
+<span class="nc" id="L301">        } catch (SQLException ex) {</span>
+<span class="nc" id="L302">            System.out.print(&quot;Errore nella funzione: &quot; + ex);</span>
+<span class="fc" id="L303">        }</span>
+<span class="fc" id="L304">    }</span>
+    
+    public void pPro3(Connection conn) {
+        try {
+<span class="fc" id="L308">            String query = &quot;SELECT Fase, AVG(DAYS(CURRENT_DATE) - DAYS(DataInizio)) AS TempoMedio &quot; +</span>
+                           &quot;FROM FaseProgetto &quot; +
+                           &quot;GROUP BY Fase;&quot;;
+<span class="fc" id="L311">            PreparedStatement pstmt = conn.prepareStatement(query);</span>
+<span class="fc" id="L312">            ResultSet rs = pstmt.executeQuery();</span>
+
+            // Stampa dei risultati
+<span class="fc bfc" id="L315" title="All 2 branches covered.">            while (rs.next()) {</span>
+<span class="fc" id="L316">                String fase = rs.getString(&quot;Fase&quot;);</span>
+<span class="fc" id="L317">                int tempoMedio = rs.getInt(&quot;TempoMedio&quot;);</span>
+<span class="fc" id="L318">                System.out.println(&quot;Fase: &quot; + fase + &quot;, Tempo Medio: &quot; + tempoMedio + &quot; giorni&quot;);</span>
+<span class="fc" id="L319">            }</span>
+<span class="nc" id="L320">        } catch (SQLException ex) {</span>
+<span class="nc" id="L321">            System.out.print(&quot;Errore nella funzione: &quot; + ex);</span>
+<span class="fc" id="L322">        }</span>
+<span class="fc" id="L323">    }</span>
+    
+    public void pPro1(Connection conn){
+    try{
+<span class="fc" id="L327">        String query = &quot;SELECT e.IdProdotto, e.Versione, e.Guadagno * e.Vendite AS GuadagnoTotale &quot; +</span>
+                    &quot;FROM Evoluzione e;&quot;;
+        
+<span class="fc" id="L330">        PreparedStatement pstmt = conn.prepareStatement(query);</span>
+<span class="fc" id="L331">        ResultSet rs = pstmt.executeQuery();</span>
+
+        // Stampa dei risultati
+<span class="fc bfc" id="L334" title="All 2 branches covered.">        while (rs.next()) {</span>
+<span class="fc" id="L335">            int idProdotto = rs.getInt(&quot;IdProdotto&quot;);</span>
+<span class="fc" id="L336">            String versione = rs.getString(&quot;Versione&quot;);</span>
+<span class="fc" id="L337">            double guadagnoTotale = rs.getDouble(&quot;GuadagnoTotale&quot;);</span>
+<span class="fc" id="L338">            System.out.println(&quot;Id Prodotto: &quot; + idProdotto + &quot;, Versione: &quot; + versione + &quot;, Guadagno Totale: &quot; + guadagnoTotale);</span>
+<span class="fc" id="L339">        }</span>
+<span class="nc" id="L340">    }catch (SQLException ex) {</span>
+<span class="nc" id="L341">        System.out.print(&quot;Errore nella funzione: &quot; + ex);</span>
+<span class="fc" id="L342">    }</span>
+    
+<span class="fc" id="L344">}</span>
+
+    
+    public void pPro2(Connection conn){
+        try{
+<span class="fc" id="L349">            String query = &quot;SELECT e.IdProdotto, e.Versione, e.Vendite - LAG(e.Vendite) OVER (PARTITION BY e.IdProdotto ORDER BY e.Versione) AS VariazioneVendite &quot; +</span>
+                        &quot;FROM Evoluzione e &quot; +
+                        &quot;ORDER BY e.IdProdotto, e.Versione;&quot;;
+<span class="fc" id="L352">            PreparedStatement pstmt = conn.prepareStatement(query);</span>
+<span class="fc" id="L353">            ResultSet rs = pstmt.executeQuery();</span>
+
+            // Stampa dei risultati
+<span class="fc bfc" id="L356" title="All 2 branches covered.">            while (rs.next()) {</span>
+<span class="fc" id="L357">                int idProdotto = rs.getInt(&quot;IdProdotto&quot;);</span>
+<span class="fc" id="L358">                String versione = rs.getString(&quot;Versione&quot;);</span>
+<span class="fc" id="L359">                double variazioneVendite = rs.getDouble(&quot;VariazioneVendite&quot;);</span>
+<span class="fc" id="L360">                System.out.println(&quot;Id Prodotto: &quot; + idProdotto + &quot;, Versione: &quot; + versione + &quot;, Variazione Vendite: &quot; + variazioneVendite);</span>
+<span class="fc" id="L361">            }</span>
+<span class="nc" id="L362">        }catch (SQLException ex) {</span>
+<span class="nc" id="L363">            System.out.print(&quot;Errore nella funzione: &quot; + ex);</span>
+<span class="fc" id="L364">        }</span>
+<span class="fc" id="L365">    }</span>
+    
+    public String pDip3(PreparedStatement pstmt){
+        try {
+<span class="nc" id="L369">            ResultSet rset = pstmt.executeQuery();</span>
+<span class="nc" id="L370">            int column_count = (rset.getMetaData()).getColumnCount();</span>
+<span class="nc bnc" id="L371" title="All 2 branches missed.">            if (rset != null) {</span>
+<span class="nc" id="L372">                String outputS = &quot;&quot;;</span>
+<span class="nc" id="L373">                String dipI = &quot;&quot;;</span>
+<span class="nc" id="L374">                int s1n = 0;</span>
+<span class="nc" id="L375">                int s2n = 0;</span>
+<span class="nc" id="L376">                int s3n = 0;</span>
+<span class="nc" id="L377">                int s1p = 0;</span>
+<span class="nc" id="L378">                int s2p = 0;</span>
+<span class="nc" id="L379">                int s3p = 0;</span>
+                
+<span class="nc bnc" id="L381" title="All 2 branches missed.">                while (rset.next()) {</span>
+<span class="nc" id="L382">                    System.out.print(dipI+&quot; - &quot;+ rset.getString(1)+&quot;\n&quot;);</span>
+<span class="nc bnc" id="L383" title="All 2 branches missed.">                    if(!(dipI.equalsIgnoreCase(rset.getString(1)))){</span>
+<span class="nc" id="L384">                        dipI = rset.getString(1);</span>
+<span class="nc bnc" id="L385" title="All 2 branches missed.">                        if(rset.getInt(2) &gt;= 6)</span>
+                        {
+<span class="nc" id="L387">                            s1p++;</span>
+                        }
+                        else
+                        {
+<span class="nc" id="L391">                            s1n++;</span>
+                        }
+                        
+<span class="nc bnc" id="L394" title="All 2 branches missed.">                        if(rset.getInt(3) &gt;= 6)</span>
+                        {
+<span class="nc" id="L396">                            s2p++;</span>
+                        }
+                        else
+                        {
+<span class="nc" id="L400">                            s2n++;</span>
+                        }
+                        
+<span class="nc bnc" id="L403" title="All 2 branches missed.">                        if(rset.getInt(4) &gt;= 6)</span>
+                        {
+<span class="nc" id="L405">                            s3p++;</span>
+                        }
+                        else
+                        {
+<span class="nc" id="L409">                            s3n++;</span>
+                        }
+                    }
+                    else{
+<span class="nc" id="L413">                        outputS += &quot;Dipartimento:&quot;+ dipI +&quot; soddi&quot;+ s1p+&quot;\n&quot;;</span>
+                    }
+                }
+<span class="nc" id="L416">                return outputS;</span>
+            }
+<span class="nc" id="L418">        } catch (SQLException ex) {</span>
+<span class="nc" id="L419">            System.out.print(&quot;Errore nella funzione: &quot; + ex);</span>
+<span class="nc" id="L420">        }</span>
+<span class="nc" id="L421">        return &quot;error&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

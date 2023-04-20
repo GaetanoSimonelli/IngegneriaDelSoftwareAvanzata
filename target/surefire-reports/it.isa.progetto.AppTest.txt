@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: it.isa.progetto.AppTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.42 s - in it.isa.progetto.AppTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.238 s - in it.isa.progetto.AppTest
